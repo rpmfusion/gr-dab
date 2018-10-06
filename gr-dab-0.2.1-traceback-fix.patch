@@ -1,0 +1,66 @@
+From f24481135596f1e1c92a31747b0a7394cc2fa143 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ond=C5=99ej=20Lyson=C4=9Bk?= <olysonek@redhat.com>
+Date: Mon, 24 Sep 2018 19:48:03 +0200
+Subject: [PATCH] apps: Fix a traceback in set_gain_mode
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Ondřej Lysoněk <olysonek@redhat.com>
+---
+ apps/rtl_sdr_dab_calibrate.py        | 2 +-
+ apps/rtl_sdr_dab_rx.py               | 4 ++--
+ apps/rtl_sdr_dab_rx_constellation.py | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/apps/rtl_sdr_dab_calibrate.py b/apps/rtl_sdr_dab_calibrate.py
+index 99164fb..47e216e 100755
+--- a/apps/rtl_sdr_dab_calibrate.py
++++ b/apps/rtl_sdr_dab_calibrate.py
+@@ -70,7 +70,7 @@ class rtl_sdr_dab_cal(gr.top_block):
+ 			# set gain 
+ 			if options.rx_gain is None:
+ 				# if no gain was specified, use AGC
+-				self.src.set_gain_mode(1, 0)
++				self.src.set_gain_mode(True, 0)
+ 			else:
+ 				self.src.set_gain(options.rx_gain, 0)
+ 
+diff --git a/apps/rtl_sdr_dab_rx.py b/apps/rtl_sdr_dab_rx.py
+index 9a6bf77..0ed0415 100755
+--- a/apps/rtl_sdr_dab_rx.py
++++ b/apps/rtl_sdr_dab_rx.py
+@@ -66,7 +66,7 @@ class rtl_sdr_dab_rx(gr.top_block):
+ 		self.src.set_sample_rate(sample_rate)
+ 		#self.src.set_center_freq(209.936e6, 0)
+ 		self.src.set_freq_corr(options.ppm)
+-		self.src.set_gain_mode(1, 0)
++		self.src.set_gain_mode(True, 0)
+ 		self.src.set_gain(0, 0)
+ 
+ 		self.dab_params = grdab.parameters.dab_parameters(
+@@ -105,7 +105,7 @@ class rtl_sdr_dab_rx(gr.top_block):
+ 		# set gain      
+ 		if options.rx_gain is None:
+ 			# if no gain was specified, use AGC
+-                        self.src.set_gain_mode(1, 0)
++                        self.src.set_gain_mode(True, 0)
+                 else:
+                         self.src.set_gain(options.rx_gain, 0)
+ 
+diff --git a/apps/rtl_sdr_dab_rx_constellation.py b/apps/rtl_sdr_dab_rx_constellation.py
+index 3fcde71..83f67c0 100755
+--- a/apps/rtl_sdr_dab_rx_constellation.py
++++ b/apps/rtl_sdr_dab_rx_constellation.py
+@@ -75,7 +75,7 @@ class usrp_dab_gui_rx(stdgui2.std_top_block):
+ 			# set gain      
+                         if options.rx_gain is None:
+                                 # if no gain was specified, use AGC
+-                                self.src.set_gain_mode(1, 0)
++                                self.src.set_gain_mode(True, 0)
+                         else:
+                                 self.src.set_gain(options.rx_gain, 0)
+ 
+-- 
+2.17.1
+
