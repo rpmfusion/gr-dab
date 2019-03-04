@@ -7,7 +7,7 @@
 Name:             gr-dab
 URL:              https://github.com/andrmuel/gr-dab
 Version:          0.2.1
-Release:          2.%{git_suffix}%{?dist}
+Release:          3.%{git_suffix}%{?dist}
 License:          GPLv3+
 BuildRequires:    cmake, gcc-c++, python2-devel, scipy, gnuradio-devel
 BuildRequires:    python2-matplotlib, cppunit-devel, boost-devel, doxygen
@@ -80,6 +80,9 @@ popd
 %doc %{_docdir}/%{name}/xml
 
 %changelog
+* Mon Mar 04 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.2.1-3.20180925gita33609bd
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Wed Sep 26 2018 Jaroslav Škarvada <jskarvad@redhat.com> - 0.2.1-2.20180925gita33609bd
 - Fixed issues found by review
 
