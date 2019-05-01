@@ -41,7 +41,7 @@ Documentation files for gr-dab.
 mkdir build
 cd build
 %cmake -DENABLE_DOXYGEN=on ..
-%make_build
+%make_build CFLAGS="%{optflags} -O0"
 
 %install
 cd build
