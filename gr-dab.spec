@@ -1,26 +1,20 @@
-%global git_commit a33609bd75192878f9f60c1a9b02fd7473649160
-%global git_date 20180925
+#%%global git_commit a33609bd75192878f9f60c1a9b02fd7473649160
+#%%global git_date 20180925
 
-%global git_short_commit %(echo %{git_commit} | cut -c -8)
-%global git_suffix %{git_date}git%{git_short_commit}
+#%%global git_short_commit %%(echo %%{git_commit} | cut -c -8)
+#%%global git_suffix %%{git_date}git%%{git_short_commit}
 
 Name:             gr-dab
 URL:              https://github.com/andrmuel/gr-dab
-Version:          0.2.1
-Release:          3.%{git_suffix}%{?dist}
+Version:          0.3
+Release:          1%{?dist}
 License:          GPLv3+
 BuildRequires:    cmake, gcc-c++, python2-devel, scipy, gnuradio-devel
 BuildRequires:    python2-matplotlib, cppunit-devel, boost-devel, doxygen
 BuildRequires:    swig, faad2-devel, findutils
 Requires:         scipy, python2-matplotlib
 Summary:          GNU Radio DAB digital audio broadcasting module
-Source0:          %{url}/archive/%{git_commit}/%{name}-%{git_commit}.tar.gz
-# https://github.com/andrmuel/gr-dab/pull/16
-Patch0:           gr-dab-0.2.1-libdir-fix.patch
-# https://github.com/andrmuel/gr-dab/pull/17
-Patch1:           gr-dab-0.2.1-install-apps.patch
-# https://github.com/andrmuel/gr-dab/pull/18
-Patch2:           gr-dab-0.2.1-traceback-fix.patch
+Source0:          %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 %description
 GNU Radio DAB digital audio broadcasting module.
@@ -41,7 +35,7 @@ BuildArch:        noarch
 Documentation files for gr-dab.
 
 %prep
-%autosetup -p1 -n %{name}-%{git_commit}
+%autosetup -p1
 
 %build
 mkdir build
@@ -80,6 +74,10 @@ popd
 %doc %{_docdir}/%{name}/xml
 
 %changelog
+* Wed May  1 2019 Jaroslav Škarvada <jskarvad@redhat.com> - 0.3-1
+- New version
+- Dropped libdir, install-apps, and traceback-fix patches
+
 * Mon Mar 04 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.2.1-3.20180925gita33609bd
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
