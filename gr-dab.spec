@@ -7,7 +7,7 @@
 Name:             gr-dab
 URL:              https://github.com/andrmuel/gr-dab
 Version:          0.3
-Release:          2%{?dist}
+Release:          3%{?dist}
 License:          GPLv3+
 BuildRequires:    cmake, gcc-c++, python2-devel, scipy, gnuradio-devel
 BuildRequires:    python2-matplotlib, cppunit-devel, boost-devel, doxygen
@@ -78,6 +78,9 @@ make test
 %doc %{_docdir}/%{name}/xml
 
 %changelog
+* Fri May 17 2019 Jaroslav Škarvada <jskarvad@redhat.com> - 0.3-3
+- Temporaly disabled tests (https://github.com/andrmuel/gr-dab/issues/21)
+
 * Fri May 17 2019 Jaroslav Škarvada <jskarvad@redhat.com> - 0.3-2
 - Enabled tests
 
