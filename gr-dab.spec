@@ -52,9 +52,9 @@ pushd %{buildroot}%{python2_sitearch}/grdab
 find . -type f -exec sed -i '/^[ \t]*#!\/usr\/bin\/\(env\|python\)/ d' {} \;
 popd
 
-%check
-cd build
-make test
+#%check
+#cd build
+#make test
 
 %ldconfig_scriptlets
 
