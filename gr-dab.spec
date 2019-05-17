@@ -7,7 +7,7 @@
 Name:             gr-dab
 URL:              https://github.com/andrmuel/gr-dab
 Version:          0.3
-Release:          1%{?dist}
+Release:          2%{?dist}
 License:          GPLv3+
 BuildRequires:    cmake, gcc-c++, python2-devel, scipy, gnuradio-devel
 BuildRequires:    python2-matplotlib, cppunit-devel, boost-devel, doxygen
@@ -41,7 +41,7 @@ Documentation files for gr-dab.
 mkdir build
 cd build
 %cmake -DENABLE_DOXYGEN=on ..
-%make_build CFLAGS="%{optflags} -O0"
+%make_build
 
 %install
 cd build
@@ -51,6 +51,10 @@ cd build
 pushd %{buildroot}%{python2_sitearch}/grdab
 find . -type f -exec sed -i '/^[ \t]*#!\/usr\/bin\/\(env\|python\)/ d' {} \;
 popd
+
+%check
+cd build
+make test
 
 %ldconfig_scriptlets
 
@@ -74,6 +78,9 @@ popd
 %doc %{_docdir}/%{name}/xml
 
 %changelog
+* Fri May 17 2019 Jaroslav Škarvada <jskarvad@redhat.com> - 0.3-2
+- Enabled tests
+
 * Wed May  1 2019 Jaroslav Škarvada <jskarvad@redhat.com> - 0.3-1
 - New version
 - Dropped libdir, install-apps, and traceback-fix patches
