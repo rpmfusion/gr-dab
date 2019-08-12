@@ -7,11 +7,11 @@
 Name:             gr-dab
 URL:              https://github.com/andrmuel/gr-dab
 Version:          0.3
-Release:          4%{?dist}
+Release:          5%{?dist}
 License:          GPLv3+
 BuildRequires:    cmake, gcc-c++, python2-devel, scipy, gnuradio-devel
 BuildRequires:    python2-matplotlib, cppunit-devel, boost-devel, doxygen
-BuildRequires:    swig, faad2-devel, findutils
+BuildRequires:    swig, faad2-devel, findutils, texlive-latex, texlive-dvips
 Requires:         scipy, python2-matplotlib
 Summary:          GNU Radio DAB digital audio broadcasting module
 Source0:          %{url}/archive/%{version}/%{name}-%{version}.tar.gz
@@ -78,6 +78,10 @@ popd
 %doc %{_docdir}/%{name}/xml
 
 %changelog
+* Mon Aug 12 2019 Jaroslav Škarvada <jskarvad@redhat.com> - 0.3-5
+- Fixed FTBFS in f30
+  Resolves: rfbz#5336
+
 * Fri Aug 09 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.3-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
