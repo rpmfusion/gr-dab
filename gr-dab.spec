@@ -6,13 +6,14 @@
 
 Name:             gr-dab
 URL:              https://github.com/andrmuel/gr-dab
-Version:          0.3
-Release:          5%{?dist}
+Version:          0.4
+Release:          1%{?dist}
 License:          GPLv3+
-BuildRequires:    cmake, gcc-c++, python2-devel, scipy, gnuradio-devel
-BuildRequires:    python2-matplotlib, cppunit-devel, boost-devel, doxygen
+BuildRequires:    cmake, gcc-c++, python3-devel, python3-scipy, gnuradio-devel
+BuildRequires:    python3-matplotlib, cppunit-devel, boost-devel, doxygen
 BuildRequires:    swig, faad2-devel, findutils, texlive-latex, texlive-dvips
-Requires:         scipy, python2-matplotlib
+BuildRequires:    texlive-newunicodechar, log4cpp-devel, gmp-devel, orc-devel
+Requires:         python3-scipy, python3-matplotlib
 Summary:          GNU Radio DAB digital audio broadcasting module
 Source0:          %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
@@ -41,20 +42,26 @@ Documentation files for gr-dab.
 mkdir build
 cd build
 %cmake -DENABLE_DOXYGEN=on ..
-%make_build
+%make_build -j1
 
 %install
 cd build
 %make_install
 
 # remove hashbangs
-pushd %{buildroot}%{python2_sitearch}/grdab
+pushd %{buildroot}%{python3_sitearch}/grdab
 find . -type f -exec sed -i '/^[ \t]*#!\/usr\/bin\/\(env\|python\)/ d' {} \;
 popd
 
-#%check
-#cd build
-#make test
+# fix locations of devel files
+mv %{buildroot}%{_libdir}/cmake/dab/* %{buildroot}%{_libdir}/cmake/grdab
+rmdir %{buildroot}%{_libdir}/cmake/dab
+mv %{buildroot}%{_includedir}/dab/* %{buildroot}%{_includedir}/grdab
+rmdir %{buildroot}%{_includedir}/dab
+
+%check
+cd build
+make test
 
 %ldconfig_scriptlets
 
@@ -65,7 +72,7 @@ popd
 %exclude %{_docdir}/%{name}/xml
 %{_datadir}/gnuradio/grc/blocks/*
 %{_libdir}/libgnuradio-dab.so.3.*
-%{python2_sitearch}/grdab
+%{python3_sitearch}/grdab
 %{_bindir}/*
 
 %files devel
@@ -78,9 +85,9 @@ popd
 %doc %{_docdir}/%{name}/xml
 
 %changelog
-* Mon Aug 12 2019 Jaroslav Škarvada <jskarvad@redhat.com> - 0.3-5
-- Fixed FTBFS in f30
-  Resolves: rfbz#5336
+* Wed Nov 13 2019 Jaroslav Škarvada <jskarvad@redhat.com> - 0.4-1
+- New version
+- Switched to Python 3
 
 * Fri Aug 09 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.3-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
