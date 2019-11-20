@@ -13,7 +13,7 @@ BuildRequires:    cmake, gcc-c++, python3-devel, python3-scipy, gnuradio-devel
 BuildRequires:    python3-matplotlib, cppunit-devel, boost-devel, doxygen
 BuildRequires:    swig, faad2-devel, findutils, texlive-latex, texlive-dvips
 BuildRequires:    texlive-newunicodechar, log4cpp-devel, gmp-devel, orc-devel
-Requires:         python3-scipy, python3-matplotlib
+Requires:         python3-scipy, python3-matplotlib, fftw-devel
 Summary:          GNU Radio DAB digital audio broadcasting module
 Source0:          %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
