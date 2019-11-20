@@ -11,7 +11,7 @@ Release:          1%{?dist}
 License:          GPLv3+
 BuildRequires:    cmake, gcc-c++, python3-devel, python3-scipy, gnuradio-devel
 BuildRequires:    python3-matplotlib, cppunit-devel, boost-devel, doxygen, fftw-devel
-BuildRequires:    swig, faad2-devel, findutils, texlive-latex, texlive-dvips
+BuildRequires:    swig, faad2-devel, findutils, texlive-latex, texlive-dvips, python3-mako
 BuildRequires:    texlive-newunicodechar, log4cpp-devel, gmp-devel, orc-devel
 Requires:         python3-scipy, python3-matplotlib
 Summary:          GNU Radio DAB digital audio broadcasting module
