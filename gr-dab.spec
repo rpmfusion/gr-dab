@@ -45,7 +45,6 @@ Documentation files for gr-dab.
 %cmake3_build -j1
 
 %install
-cd build
 %cmake3_install
 
 # remove hashbangs
