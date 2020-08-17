@@ -4,12 +4,14 @@
 #%%global git_short_commit %%(echo %%{git_commit} | cut -c -8)
 #%%global git_suffix %%{git_date}git%%{git_short_commit}
 
+%undefine __cmake_in_source_build
+
 Name:             gr-dab
 URL:              https://github.com/andrmuel/gr-dab
 Version:          0.4
 Release:          3%{?dist}
 License:          GPLv3+
-BuildRequires:    cmake, gcc-c++, python3-devel, python3-scipy, gnuradio-devel
+BuildRequires:    cmake3, gcc-c++, python3-devel, python3-scipy, gnuradio-devel
 BuildRequires:    python3-matplotlib, cppunit-devel, boost-devel, doxygen, fftw-devel
 BuildRequires:    swig, faad2-devel, findutils, texlive-latex, texlive-dvips, python3-mako
 BuildRequires:    texlive-newunicodechar, log4cpp-devel, gmp-devel, orc-devel
@@ -39,14 +41,12 @@ Documentation files for gr-dab.
 %autosetup -p1
 
 %build
-mkdir build
-cd build
-%cmake -DENABLE_DOXYGEN=on ..
-%make_build -j1
+%cmake3 -DENABLE_DOXYGEN=on
+%cmake3_build -j1
 
 %install
 cd build
-%make_install
+%cmake3_install
 
 # remove hashbangs
 pushd %{buildroot}%{python3_sitearch}/grdab
