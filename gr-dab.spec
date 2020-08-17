@@ -60,7 +60,7 @@ mv %{buildroot}%{_includedir}/dab/* %{buildroot}%{_includedir}/grdab
 rmdir %{buildroot}%{_includedir}/dab
 
 %check
-cd build
+cd %{_vpath_builddir}
 make test
 
 %ldconfig_scriptlets
