@@ -9,7 +9,7 @@
 Name:             gr-dab
 URL:              https://github.com/andrmuel/gr-dab
 Version:          0.4
-Release:          4%{?dist}
+Release:          5%{?dist}
 License:          GPLv3+
 BuildRequires:    cmake3, gcc-c++, python3-devel, python3-scipy, gnuradio-devel
 BuildRequires:    python3-matplotlib, cppunit-devel, boost-devel, doxygen, fftw-devel
@@ -84,6 +84,9 @@ make test
 %doc %{_docdir}/%{name}/xml
 
 %changelog
+* Fri Aug 28 2020 Leigh Scott <leigh123linux@gmail.com> - 0.4-5
+- Rebuilt for new gnuradio
+
 * Mon Aug 24 2020 Jaroslav Škarvada <jskarvad@redhat.com> - 0.4-4
 - Rebuilt for new gnuradio
 
