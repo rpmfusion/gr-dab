@@ -9,7 +9,7 @@
 Name:             gr-dab
 URL:              https://github.com/andrmuel/gr-dab
 Version:          0.4
-Release:          5%{?dist}
+Release:          6%{?dist}
 License:          GPLv3+
 BuildRequires:    cmake3, gcc-c++, python3-devel, python3-scipy, gnuradio-devel
 BuildRequires:    python3-matplotlib, cppunit-devel, boost-devel, doxygen, fftw-devel
@@ -84,6 +84,9 @@ make test
 %doc %{_docdir}/%{name}/xml
 
 %changelog
+* Wed Feb 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Fri Aug 28 2020 Leigh Scott <leigh123linux@gmail.com> - 0.4-5
 - Rebuilt for new gnuradio
 
