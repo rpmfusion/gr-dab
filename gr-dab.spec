@@ -53,7 +53,8 @@ Development files for gr-dab.
 %package doc
 Summary:          Documentation files for gr-dab
 Requires:         %{name} = %{version}-%{release}
-BuildArch:        noarch
+# doxygen bug workaround
+#BuildArch:        noarch
 
 %description doc
 Documentation files for gr-dab.
