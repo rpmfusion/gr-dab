@@ -1,0 +1,4893 @@
+diff --git a/docs/doxygen/pydoc_macros.h b/docs/doxygen/pydoc_macros.h
+new file mode 100644
+index 0000000..e69de29
+diff --git a/docs/doxygen/update_pydoc.py b/docs/doxygen/update_pydoc.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f9a26f4..2cfdf6d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -96,7 +96,7 @@ ENDIF()
+ ########################################################################
+ # Install directories
+ ########################################################################
+-find_package(Gnuradio "3.8" REQUIRED COMPONENTS blocks filter fft)
++find_package(Gnuradio "3.9" REQUIRED COMPONENTS blocks filter fft)
+ include(GrVersion)
+ 
+ include(GrPlatform) #define LIB_SUFFIX
+@@ -137,6 +137,7 @@ endif(APPLE)
+ ########################################################################
+ find_package(Doxygen)
+ find_package(CppUnit)
++find_package(pybind11 REQUIRED)
+ 
+ ########################################################################
+ # Setup doxygen option
+@@ -167,7 +168,6 @@ add_subdirectory(include/grdab)
+ add_subdirectory(lib)
+ add_subdirectory(apps)
+ add_subdirectory(docs)
+-add_subdirectory(swig)
+ add_subdirectory(python)
+ add_subdirectory(grc)
+ 
+diff --git a/include/grdab/complex_to_interleaved_float_vcf.h b/include/grdab/complex_to_interleaved_float_vcf.h
+index fbfffcd..4ce6c07 100644
+--- a/include/grdab/complex_to_interleaved_float_vcf.h
++++ b/include/grdab/complex_to_interleaved_float_vcf.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API complex_to_interleaved_float_vcf : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<complex_to_interleaved_float_vcf> sptr;
++      typedef std::shared_ptr<complex_to_interleaved_float_vcf> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::complex_to_interleaved_float_vcf.
+diff --git a/include/grdab/control_stream_to_tag_cc.h b/include/grdab/control_stream_to_tag_cc.h
+index 4a05797..215ff6b 100644
+--- a/include/grdab/control_stream_to_tag_cc.h
++++ b/include/grdab/control_stream_to_tag_cc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API control_stream_to_tag_cc : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<control_stream_to_tag_cc> sptr;
++      typedef std::shared_ptr<control_stream_to_tag_cc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::control_stream_to_tag_cc.
+diff --git a/include/grdab/crc16_bb.h b/include/grdab/crc16_bb.h
+index 13169ce..fe3edb8 100644
+--- a/include/grdab/crc16_bb.h
++++ b/include/grdab/crc16_bb.h
+@@ -43,7 +43,7 @@ namespace gr {
+     class DAB_API crc16_bb : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<crc16_bb> sptr;
++      typedef std::shared_ptr<crc16_bb> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::crc16_bb.
+diff --git a/include/grdab/diff_phasor_vcc.h b/include/grdab/diff_phasor_vcc.h
+index a7fb32c..d60ba5c 100644
+--- a/include/grdab/diff_phasor_vcc.h
++++ b/include/grdab/diff_phasor_vcc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API diff_phasor_vcc : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<diff_phasor_vcc> sptr;
++      typedef std::shared_ptr<diff_phasor_vcc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::diff_phasor_vcc.
+diff --git a/include/grdab/estimate_sample_rate_bf.h b/include/grdab/estimate_sample_rate_bf.h
+index c25f8cf..51f1108 100644
+--- a/include/grdab/estimate_sample_rate_bf.h
++++ b/include/grdab/estimate_sample_rate_bf.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API estimate_sample_rate_bf : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<estimate_sample_rate_bf> sptr;
++      typedef std::shared_ptr<estimate_sample_rate_bf> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::estimate_sample_rate_bf.
+diff --git a/include/grdab/fib_sink_vb.h b/include/grdab/fib_sink_vb.h
+index da1c1d4..6c5c567 100644
+--- a/include/grdab/fib_sink_vb.h
++++ b/include/grdab/fib_sink_vb.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API fib_sink_vb : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<fib_sink_vb> sptr;
++      typedef std::shared_ptr<fib_sink_vb> sptr;
+ 
+ 
+       /*!
+diff --git a/include/grdab/firecode_check_bb.h b/include/grdab/firecode_check_bb.h
+index 327de5c..630c983 100644
+--- a/include/grdab/firecode_check_bb.h
++++ b/include/grdab/firecode_check_bb.h
+@@ -35,7 +35,7 @@ namespace gr {
+     class DAB_API firecode_check_bb : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<firecode_check_bb> sptr;
++      typedef std::shared_ptr<firecode_check_bb> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::firecode_check_bb.
+diff --git a/include/grdab/fractional_interpolator_triggered_update_cc.h b/include/grdab/fractional_interpolator_triggered_update_cc.h
+index f660d4b..d62755d 100644
+--- a/include/grdab/fractional_interpolator_triggered_update_cc.h
++++ b/include/grdab/fractional_interpolator_triggered_update_cc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API fractional_interpolator_triggered_update_cc : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<fractional_interpolator_triggered_update_cc> sptr;
++      typedef std::shared_ptr<fractional_interpolator_triggered_update_cc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::fractional_interpolator_triggered_update_cc.
+diff --git a/include/grdab/frequency_interleaver_vcc.h b/include/grdab/frequency_interleaver_vcc.h
+index 41519e9..303d69d 100644
+--- a/include/grdab/frequency_interleaver_vcc.h
++++ b/include/grdab/frequency_interleaver_vcc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API frequency_interleaver_vcc : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<frequency_interleaver_vcc> sptr;
++      typedef std::shared_ptr<frequency_interleaver_vcc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::frequency_interleaver_vcc.
+diff --git a/include/grdab/insert_null_symbol.h b/include/grdab/insert_null_symbol.h
+index b15da16..14e8750 100644
+--- a/include/grdab/insert_null_symbol.h
++++ b/include/grdab/insert_null_symbol.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API insert_null_symbol : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<insert_null_symbol> sptr;
++      typedef std::shared_ptr<insert_null_symbol> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::insert_null_symbol.
+diff --git a/include/grdab/magnitude_equalizer_vcc.h b/include/grdab/magnitude_equalizer_vcc.h
+index 9792835..3842cb6 100644
+--- a/include/grdab/magnitude_equalizer_vcc.h
++++ b/include/grdab/magnitude_equalizer_vcc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API magnitude_equalizer_vcc : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<magnitude_equalizer_vcc> sptr;
++      typedef std::shared_ptr<magnitude_equalizer_vcc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::magnitude_equalizer_vcc.
+diff --git a/include/grdab/measure_processing_rate.h b/include/grdab/measure_processing_rate.h
+index c84e790..3b5da56 100644
+--- a/include/grdab/measure_processing_rate.h
++++ b/include/grdab/measure_processing_rate.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API measure_processing_rate : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<measure_processing_rate> sptr;
++      typedef std::shared_ptr<measure_processing_rate> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::measure_processing_rate.
+diff --git a/include/grdab/modulo_ff.h b/include/grdab/modulo_ff.h
+index eb25a0c..b09b0d6 100644
+--- a/include/grdab/modulo_ff.h
++++ b/include/grdab/modulo_ff.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API modulo_ff : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<modulo_ff> sptr;
++      typedef std::shared_ptr<modulo_ff> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::modulo_ff.
+diff --git a/include/grdab/moving_sum_ff.h b/include/grdab/moving_sum_ff.h
+index bae8a59..449999b 100644
+--- a/include/grdab/moving_sum_ff.h
++++ b/include/grdab/moving_sum_ff.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API moving_sum_ff : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<moving_sum_ff> sptr;
++      typedef std::shared_ptr<moving_sum_ff> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::moving_sum_ff.
+diff --git a/include/grdab/mp2_decode_bs.h b/include/grdab/mp2_decode_bs.h
+index b5e7db6..fd92d78 100644
+--- a/include/grdab/mp2_decode_bs.h
++++ b/include/grdab/mp2_decode_bs.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API mp2_decode_bs : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<mp2_decode_bs> sptr;
++      typedef std::shared_ptr<mp2_decode_bs> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::mp2_decode_bs.
+diff --git a/include/grdab/mp4_decode_bs.h b/include/grdab/mp4_decode_bs.h
+index bcb1c41..2e1353a 100644
+--- a/include/grdab/mp4_decode_bs.h
++++ b/include/grdab/mp4_decode_bs.h
+@@ -37,7 +37,7 @@ namespace gr {
+     class DAB_API mp4_decode_bs : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<mp4_decode_bs> sptr;
++      typedef std::shared_ptr<mp4_decode_bs> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::mp4_decode_bs.
+diff --git a/include/grdab/ofdm_coarse_frequency_correct.h b/include/grdab/ofdm_coarse_frequency_correct.h
+index adc2627..e72cd4c 100644
+--- a/include/grdab/ofdm_coarse_frequency_correct.h
++++ b/include/grdab/ofdm_coarse_frequency_correct.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API ofdm_coarse_frequency_correct : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<ofdm_coarse_frequency_correct> sptr;
++      typedef std::shared_ptr<ofdm_coarse_frequency_correct> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::ofdm_coarse_frequency_correct.
+diff --git a/include/grdab/ofdm_ffe_all_in_one.h b/include/grdab/ofdm_ffe_all_in_one.h
+index 61e62cb..e42a38b 100644
+--- a/include/grdab/ofdm_ffe_all_in_one.h
++++ b/include/grdab/ofdm_ffe_all_in_one.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API ofdm_ffe_all_in_one : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<ofdm_ffe_all_in_one> sptr;
++      typedef std::shared_ptr<ofdm_ffe_all_in_one> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::ofdm_ffe_all_in_one.
+diff --git a/include/grdab/ofdm_insert_pilot_vcc.h b/include/grdab/ofdm_insert_pilot_vcc.h
+index cf8563a..a075961 100644
+--- a/include/grdab/ofdm_insert_pilot_vcc.h
++++ b/include/grdab/ofdm_insert_pilot_vcc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API ofdm_insert_pilot_vcc : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<ofdm_insert_pilot_vcc> sptr;
++      typedef std::shared_ptr<ofdm_insert_pilot_vcc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::ofdm_insert_pilot_vcc.
+diff --git a/include/grdab/ofdm_move_and_insert_zero.h b/include/grdab/ofdm_move_and_insert_zero.h
+index 6b12644..071f689 100644
+--- a/include/grdab/ofdm_move_and_insert_zero.h
++++ b/include/grdab/ofdm_move_and_insert_zero.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API ofdm_move_and_insert_zero : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<ofdm_move_and_insert_zero> sptr;
++      typedef std::shared_ptr<ofdm_move_and_insert_zero> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::ofdm_move_and_insert_zero.
+diff --git a/include/grdab/ofdm_remove_first_symbol_vcc.h b/include/grdab/ofdm_remove_first_symbol_vcc.h
+index 5a62265..5504806 100644
+--- a/include/grdab/ofdm_remove_first_symbol_vcc.h
++++ b/include/grdab/ofdm_remove_first_symbol_vcc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API ofdm_remove_first_symbol_vcc : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<ofdm_remove_first_symbol_vcc> sptr;
++      typedef std::shared_ptr<ofdm_remove_first_symbol_vcc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::ofdm_remove_first_symbol_vcc.
+diff --git a/include/grdab/ofdm_sampler.h b/include/grdab/ofdm_sampler.h
+index 2e802c3..f014f4a 100644
+--- a/include/grdab/ofdm_sampler.h
++++ b/include/grdab/ofdm_sampler.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API ofdm_sampler : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<ofdm_sampler> sptr;
++      typedef std::shared_ptr<ofdm_sampler> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::ofdm_sampler.
+diff --git a/include/grdab/peak_detector_fb.h b/include/grdab/peak_detector_fb.h
+index c32d646..2402278 100644
+--- a/include/grdab/peak_detector_fb.h
++++ b/include/grdab/peak_detector_fb.h
+@@ -39,7 +39,7 @@ namespace gr {
+     class DAB_API peak_detector_fb : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<peak_detector_fb> sptr;
++      typedef std::shared_ptr<peak_detector_fb> sptr;
+ 
+       /*!
+        * Make a peak detector block.
+diff --git a/include/grdab/prune.h b/include/grdab/prune.h
+index 80048d4..17efad2 100644
+--- a/include/grdab/prune.h
++++ b/include/grdab/prune.h
+@@ -35,7 +35,7 @@ namespace gr {
+     class DAB_API prune : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<prune> sptr;
++      typedef std::shared_ptr<prune> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::prune.
+diff --git a/include/grdab/prune_vectors.h b/include/grdab/prune_vectors.h
+index b8a52bf..44e8ce4 100644
+--- a/include/grdab/prune_vectors.h
++++ b/include/grdab/prune_vectors.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API prune_vectors : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<prune_vectors> sptr;
++      typedef std::shared_ptr<prune_vectors> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::prune_vectors.
+diff --git a/include/grdab/puncture_bb.h b/include/grdab/puncture_bb.h
+index 3745e3f..dc8151f 100644
+--- a/include/grdab/puncture_bb.h
++++ b/include/grdab/puncture_bb.h
+@@ -34,7 +34,7 @@ namespace gr {
+     class DAB_API puncture_bb : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<puncture_bb> sptr;
++      typedef std::shared_ptr<puncture_bb> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::puncture_bb.
+diff --git a/include/grdab/qpsk_demapper_vcb.h b/include/grdab/qpsk_demapper_vcb.h
+index 73c52a7..466835a 100644
+--- a/include/grdab/qpsk_demapper_vcb.h
++++ b/include/grdab/qpsk_demapper_vcb.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API qpsk_demapper_vcb : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<qpsk_demapper_vcb> sptr;
++      typedef std::shared_ptr<qpsk_demapper_vcb> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::qpsk_demapper_vcb.
+diff --git a/include/grdab/qpsk_mapper_vbc.h b/include/grdab/qpsk_mapper_vbc.h
+index 40dc61a..58835f8 100644
+--- a/include/grdab/qpsk_mapper_vbc.h
++++ b/include/grdab/qpsk_mapper_vbc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API qpsk_mapper_vbc : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<qpsk_mapper_vbc> sptr;
++      typedef std::shared_ptr<qpsk_mapper_vbc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::qpsk_mapper_vbc.
+diff --git a/include/grdab/reed_solomon_decode_bb.h b/include/grdab/reed_solomon_decode_bb.h
+index fc4e067..2ded587 100644
+--- a/include/grdab/reed_solomon_decode_bb.h
++++ b/include/grdab/reed_solomon_decode_bb.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API reed_solomon_decode_bb : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<reed_solomon_decode_bb> sptr;
++      typedef std::shared_ptr<reed_solomon_decode_bb> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::reed_solomon3_bb.
+diff --git a/include/grdab/repartition_vectors.h b/include/grdab/repartition_vectors.h
+index aafb03a..e4c0b36 100644
+--- a/include/grdab/repartition_vectors.h
++++ b/include/grdab/repartition_vectors.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API repartition_vectors : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<repartition_vectors> sptr;
++      typedef std::shared_ptr<repartition_vectors> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::repartition_vectors.
+diff --git a/include/grdab/select_subch_vfvf.h b/include/grdab/select_subch_vfvf.h
+index fe24f33..b3c4402 100644
+--- a/include/grdab/select_subch_vfvf.h
++++ b/include/grdab/select_subch_vfvf.h
+@@ -44,7 +44,7 @@ namespace gr {
+     class DAB_API select_subch_vfvf : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<select_subch_vfvf> sptr;
++      typedef std::shared_ptr<select_subch_vfvf> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::select_subch_vfvf.
+diff --git a/include/grdab/select_vectors.h b/include/grdab/select_vectors.h
+index 931fa29..b256850 100644
+--- a/include/grdab/select_vectors.h
++++ b/include/grdab/select_vectors.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API select_vectors : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<select_vectors> sptr;
++      typedef std::shared_ptr<select_vectors> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::select_vectors.
+diff --git a/include/grdab/sum_phasor_trig_vcc.h b/include/grdab/sum_phasor_trig_vcc.h
+index 1cdb18c..92c4f73 100644
+--- a/include/grdab/sum_phasor_trig_vcc.h
++++ b/include/grdab/sum_phasor_trig_vcc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API sum_phasor_trig_vcc : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<sum_phasor_trig_vcc> sptr;
++      typedef std::shared_ptr<sum_phasor_trig_vcc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::sum_phasor_trig_vcc.
+diff --git a/include/grdab/time_deinterleave_ff.h b/include/grdab/time_deinterleave_ff.h
+index eb0df94..6958a7e 100644
+--- a/include/grdab/time_deinterleave_ff.h
++++ b/include/grdab/time_deinterleave_ff.h
+@@ -39,7 +39,7 @@ namespace gr {
+     class DAB_API time_deinterleave_ff : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<time_deinterleave_ff> sptr;
++      typedef std::shared_ptr<time_deinterleave_ff> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::time_deinterleave_ff.
+diff --git a/include/grdab/unpuncture_ff.h b/include/grdab/unpuncture_ff.h
+index 7f669f8..f19af5f 100644
+--- a/include/grdab/unpuncture_ff.h
++++ b/include/grdab/unpuncture_ff.h
+@@ -35,7 +35,7 @@ namespace gr {
+     class DAB_API unpuncture_ff : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<unpuncture_ff> sptr;
++      typedef std::shared_ptr<unpuncture_ff> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::unpuncture_ff.
+diff --git a/include/grdab/unpuncture_vff.h b/include/grdab/unpuncture_vff.h
+index 83a4bd5..bc2cb04 100644
+--- a/include/grdab/unpuncture_vff.h
++++ b/include/grdab/unpuncture_vff.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API unpuncture_vff : virtual public gr::sync_block
+     {
+      public:
+-      typedef boost::shared_ptr<unpuncture_vff> sptr;
++      typedef std::shared_ptr<unpuncture_vff> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::unpuncture_vff.
+diff --git a/include/grdab/valve_ff.h b/include/grdab/valve_ff.h
+index 1bbbbeb..3711688 100644
+--- a/include/grdab/valve_ff.h
++++ b/include/grdab/valve_ff.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API valve_ff : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<valve_ff> sptr;
++      typedef std::shared_ptr<valve_ff> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of dab::valve_ff.
+diff --git a/include/grdab/xrun_monitor_cc.h b/include/grdab/xrun_monitor_cc.h
+index 72c68af..e7ba3c1 100644
+--- a/include/grdab/xrun_monitor_cc.h
++++ b/include/grdab/xrun_monitor_cc.h
+@@ -36,7 +36,7 @@ namespace gr {
+     class DAB_API xrun_monitor_cc : virtual public gr::block
+     {
+      public:
+-      typedef boost::shared_ptr<xrun_monitor_cc> sptr;
++      typedef std::shared_ptr<xrun_monitor_cc> sptr;
+ 
+       /*!
+        * \brief Return a shared_ptr to a new instance of grdab::xrun_monitor_cc.
+diff --git a/legacy/dab_ofdm_coarse_frequency_correct.h b/legacy/dab_ofdm_coarse_frequency_correct.h
+index 80b57dc..0ede66d 100644
+--- a/legacy/dab_ofdm_coarse_frequency_correct.h
++++ b/legacy/dab_ofdm_coarse_frequency_correct.h
+@@ -26,7 +26,7 @@
+ 
+ class dab_ofdm_coarse_frequency_correct;
+ 
+-typedef boost::shared_ptr<dab_ofdm_coarse_frequency_correct> dab_ofdm_coarse_frequency_correct_sptr;
++typedef std::shared_ptr<dab_ofdm_coarse_frequency_correct> dab_ofdm_coarse_frequency_correct_sptr;
+ 
+ dab_ofdm_coarse_frequency_correct_sptr 
+ dab_make_ofdm_coarse_frequency_correct (unsigned int fft_length, 
+diff --git a/lib/dab_concatenate_signals.h b/lib/dab_concatenate_signals.h
+index ffdded3..cb84873 100644
+--- a/lib/dab_concatenate_signals.h
++++ b/lib/dab_concatenate_signals.h
+@@ -26,7 +26,7 @@
+ #include <gr_block.h>
+ 
+ class dab_concatenate_signals;
+-typedef boost::shared_ptr<dab_concatenate_signals> dab_concatenate_signals_sptr;
++typedef std::shared_ptr<dab_concatenate_signals> dab_concatenate_signals_sptr;
+ 
+ dab_concatenate_signals_sptr dab_make_concatenate_signals (size_t itemsize);
+ 
+diff --git a/lib/dab_correct_individual_phase_offset_vff.h b/lib/dab_correct_individual_phase_offset_vff.h
+index 858643c..348e8b4 100644
+--- a/lib/dab_correct_individual_phase_offset_vff.h
++++ b/lib/dab_correct_individual_phase_offset_vff.h
+@@ -27,7 +27,7 @@
+ class dab_correct_individual_phase_offset_vff;
+ 
+ /*
+- * We use boost::shared_ptr's instead of raw pointers for all access
++ * We use std::shared_ptr's instead of raw pointers for all access
+  * to gr_blocks (and many other data structures).  The shared_ptr gets
+  * us transparent reference counting, which greatly simplifies storage
+  * management issues.  This is especially helpful in our hybrid
+@@ -35,9 +35,9 @@ class dab_correct_individual_phase_offset_vff;
+  *
+  * See http://www.boost.org/libs/smart_ptr/smart_ptr.htm
+  *
+- * As a convention, the _sptr suffix indicates a boost::shared_ptr
++ * As a convention, the _sptr suffix indicates a std::shared_ptr
+  */
+-typedef boost::shared_ptr<dab_correct_individual_phase_offset_vff> dab_correct_individual_phase_offset_vff_sptr;
++typedef std::shared_ptr<dab_correct_individual_phase_offset_vff> dab_correct_individual_phase_offset_vff_sptr;
+ 
+ /*!
+  * \brief Return a shared_ptr to a new instance of dab_correct_individual_phase_offset_vff.
+diff --git a/lib/dab_measure_ber_b.h b/lib/dab_measure_ber_b.h
+index 0fc9b97..41222ab 100644
+--- a/lib/dab_measure_ber_b.h
++++ b/lib/dab_measure_ber_b.h
+@@ -26,7 +26,7 @@
+ #include <gr_sync_block.h>
+ 
+ class dab_measure_ber_b;
+-typedef boost::shared_ptr<dab_measure_ber_b> dab_measure_ber_b_sptr;
++typedef std::shared_ptr<dab_measure_ber_b> dab_measure_ber_b_sptr;
+ 
+ dab_measure_ber_b_sptr dab_make_measure_ber_b();
+ 
+diff --git a/lib/dab_moving_sum_cc.h b/lib/dab_moving_sum_cc.h
+index 97ab011..6b4b224 100644
+--- a/lib/dab_moving_sum_cc.h
++++ b/lib/dab_moving_sum_cc.h
+@@ -26,7 +26,7 @@
+ 
+ class dab_moving_sum_cc;
+ 
+-typedef boost::shared_ptr<dab_moving_sum_cc> dab_moving_sum_cc_sptr;
++typedef std::shared_ptr<dab_moving_sum_cc> dab_moving_sum_cc_sptr;
+ 
+ dab_moving_sum_cc_sptr dab_make_moving_sum_cc (int length);
+ 
+diff --git a/lib/dab_ofdm_ffs_sample.h b/lib/dab_ofdm_ffs_sample.h
+index 575259f..d6c19fc 100644
+--- a/lib/dab_ofdm_ffs_sample.h
++++ b/lib/dab_ofdm_ffs_sample.h
+@@ -26,7 +26,7 @@
+ 
+ class dab_ofdm_ffs_sample;
+ 
+-typedef boost::shared_ptr<dab_ofdm_ffs_sample> dab_ofdm_ffs_sample_sptr;
++typedef std::shared_ptr<dab_ofdm_ffs_sample> dab_ofdm_ffs_sample_sptr;
+ 
+ dab_ofdm_ffs_sample_sptr dab_make_ofdm_ffs_sample (unsigned int symbol_length, unsigned int fft_length, unsigned int num_symbols, float alpha, unsigned int sample_rate);
+ 
+diff --git a/lib/dab_puncture_vbb.h b/lib/dab_puncture_vbb.h
+index 9d4eafc..76864aa 100644
+--- a/lib/dab_puncture_vbb.h
++++ b/lib/dab_puncture_vbb.h
+@@ -27,7 +27,7 @@
+ 
+ class dab_puncture_vbb;
+ 
+-typedef boost::shared_ptr <dab_puncture_vbb> dab_puncture_vbb_sptr;
++typedef std::shared_ptr <dab_puncture_vbb> dab_puncture_vbb_sptr;
+ 
+ dab_puncture_vbb_sptr
+ dab_make_puncture_vbb(const std::vector<unsigned char> &puncturing_vector);
+diff --git a/lib/dab_sum_elements_vff.h b/lib/dab_sum_elements_vff.h
+index 45d9fba..50982bc 100644
+--- a/lib/dab_sum_elements_vff.h
++++ b/lib/dab_sum_elements_vff.h
+@@ -27,7 +27,7 @@
+ class dab_sum_elements_vff;
+ 
+ /*
+- * We use boost::shared_ptr's instead of raw pointers for all access
++ * We use std::shared_ptr's instead of raw pointers for all access
+  * to gr_blocks (and many other data structures).  The shared_ptr gets
+  * us transparent reference counting, which greatly simplifies storage
+  * management issues.  This is especially helpful in our hybrid
+@@ -35,9 +35,9 @@ class dab_sum_elements_vff;
+  *
+  * See http://www.boost.org/libs/smart_ptr/smart_ptr.htm
+  *
+- * As a convention, the _sptr suffix indicates a boost::shared_ptr
++ * As a convention, the _sptr suffix indicates a std::shared_ptr
+  */
+-typedef boost::shared_ptr<dab_sum_elements_vff> dab_sum_elements_vff_sptr;
++typedef std::shared_ptr<dab_sum_elements_vff> dab_sum_elements_vff_sptr;
+ 
+ /*!
+  * \brief Return a shared_ptr to a new instance of dab_sum_elements_vff.
+diff --git a/python/CMakeLists.txt b/python/CMakeLists.txt
+index 0512663..c4024b7 100644
+--- a/python/CMakeLists.txt
++++ b/python/CMakeLists.txt
+@@ -79,3 +79,5 @@ GR_ADD_TEST(qa_valve_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_valv
+ GR_ADD_TEST(qa_peak_detector_fb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_peak_detector_fb.py)
+ 
+ add_subdirectory(app)
++add_subdirectory(bindings)
++
+diff --git a/python/__init__.py b/python/__init__.py
+index 8c9714d..4bef491 100644
+--- a/python/__init__.py
++++ b/python/__init__.py
+@@ -1,19 +1,7 @@
+ #
+ # Copyright 2008,2009 Free Software Foundation, Inc.
+ #
+-# This application is free software; you can redistribute it and/or modify
+-# it under the terms of the GNU General Public License as published by
+-# the Free Software Foundation; either version 3, or (at your option)
+-# any later version.
+-#
+-# This application is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-# GNU General Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License along
+-# with this program; if not, write to the Free Software Foundation, Inc.,
+-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
++# SPDX-License-Identifier: GPL-3.0-or-later
+ #
+ 
+ # The presence of this file turns this directory into a Python package
+@@ -22,15 +10,14 @@
+ This is the GNU Radio DAB module. Place your Python package
+ description here (python/__init__.py).
+ '''
++import os
+ 
+-from __future__ import unicode_literals
+-
+-# import swig generated symbols into the dab namespace
++# import pybind11 generated symbols into the dab namespace
+ try:
+-	# this might fail if the module is python-only
+-	from .grdab_swig import *
+-except ImportError:
+-	pass
++    # this might fail if the module is python-only
++    from .dab_python import *
++except ModuleNotFoundError:
++    pass
+ 
+ # import any pure python here
+ from .ofdm_sync_dab import ofdm_sync_dab
+diff --git a/python/bindings/CMakeLists.txt b/python/bindings/CMakeLists.txt
+new file mode 100644
+index 0000000..b02a3e2
+--- /dev/null
++++ b/python/bindings/CMakeLists.txt
+@@ -0,0 +1,39 @@
++# Copyright 2020 Free Software Foundation, Inc.
++#
++# This file is part of GNU Radio
++#
++# SPDX-License-Identifier: GPL-3.0-or-later
++#
++
++########################################################################
++# Check if there is C++ code at all
++########################################################################
++if(NOT dab_sources)
++    MESSAGE(STATUS "No C++ sources... skipping python bindings")
++    return()
++endif(NOT dab_sources)
++
++########################################################################
++# Check for pygccxml
++########################################################################
++GR_PYTHON_CHECK_MODULE_RAW(
++    "pygccxml"
++    "import pygccxml"
++    PYGCCXML_FOUND
++    )
++
++include(GrPybind)
++
++########################################################################
++# Python Bindings
++########################################################################
++
++list(APPEND dab_python_files
++    python_bindings.cc)
++
++GR_PYBIND_MAKE_OOT(dab 
++   ../..
++   gr::dab
++   "${dab_python_files}")
++
++install(TARGETS dab_python DESTINATION ${GR_PYTHON_DIR}/dab COMPONENT pythonapi)
+diff --git a/python/bindings/README.md b/python/bindings/README.md
+new file mode 100644
+index 0000000..e69de29
+diff --git a/python/bindings/bind_oot_file.py b/python/bindings/bind_oot_file.py
+new file mode 100644
+index 0000000..91719f7
+--- /dev/null
++++ b/python/bindings/bind_oot_file.py
+@@ -0,0 +1,57 @@
++import warnings
++import argparse
++import os
++from gnuradio.bindtool import BindingGenerator
++import pathlib
++import sys
++
++parser = argparse.ArgumentParser(description='Bind a GR Out of Tree Block')
++parser.add_argument('--module', type=str,
++                    help='Name of gr module containing file to bind (e.g. fft digital analog)')
++
++parser.add_argument('--output_dir', default='/tmp',
++                    help='Output directory of generated bindings')
++parser.add_argument('--prefix', help='Prefix of Installed GNU Radio')
++parser.add_argument('--src', help='Directory of gnuradio source tree',
++                    default=os.path.dirname(os.path.abspath(__file__))+'/../../..')
++
++parser.add_argument(
++    '--filename', help="File to be parsed")
++
++parser.add_argument(
++    '--defines', help='Set additional defines for precompiler',default=(), nargs='*')
++parser.add_argument(
++    '--include', help='Additional Include Dirs, separated', default=(), nargs='*')
++
++parser.add_argument(
++    '--status', help='Location of output file for general status (used during cmake)', default=None
++)
++parser.add_argument(
++    '--flag_automatic', default='0'
++)
++parser.add_argument(
++    '--flag_pygccxml', default='0'
++)
++
++args = parser.parse_args()
++
++prefix = args.prefix
++output_dir = args.output_dir
++defines = tuple(','.join(args.defines).split(','))
++includes = ','.join(args.include)
++name = args.module
++
++namespace = ['gr', name]
++prefix_include_root = name
++
++
++with warnings.catch_warnings():
++    warnings.filterwarnings("ignore", category=DeprecationWarning)
++
++    bg = BindingGenerator(prefix, namespace,
++                          prefix_include_root, output_dir, define_symbols=defines, addl_includes=includes,
++                          catch_exceptions=False, write_json_output=False, status_output=args.status,
++                          flag_automatic=True if args.flag_automatic.lower() in [
++                              '1', 'true'] else False,
++                          flag_pygccxml=True if args.flag_pygccxml.lower() in ['1', 'true'] else False)
++    bg.gen_file_binding(args.filename)
+diff --git a/python/bindings/complex_to_interleaved_float_vcf_python.cc b/python/bindings/complex_to_interleaved_float_vcf_python.cc
+new file mode 100644
+index 0000000..06fd594
+--- /dev/null
++++ b/python/bindings/complex_to_interleaved_float_vcf_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(complex_to_interleaved_float_vcf.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(befa4afb3194185f999951cb8053bca6)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/complex_to_interleaved_float_vcf.h>
++// pydoc.h is automatically generated in the build directory
++#include <complex_to_interleaved_float_vcf_pydoc.h>
++
++void bind_complex_to_interleaved_float_vcf(py::module& m)
++{
++
++    using complex_to_interleaved_float_vcf    = gr::dab::complex_to_interleaved_float_vcf;
++
++
++    py::class_<complex_to_interleaved_float_vcf,
++        std::shared_ptr<complex_to_interleaved_float_vcf>>(m, "complex_to_interleaved_float_vcf", D(complex_to_interleaved_float_vcf))
++
++        .def(py::init(&complex_to_interleaved_float_vcf::make),
++           py::arg("length"),
++           D(complex_to_interleaved_float_vcf,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/control_stream_to_tag_cc_python.cc b/python/bindings/control_stream_to_tag_cc_python.cc
+new file mode 100644
+index 0000000..4dedcb9
+--- /dev/null
++++ b/python/bindings/control_stream_to_tag_cc_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(control_stream_to_tag_cc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(3abfdda9823567b05206dca7c9fd41f5)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/control_stream_to_tag_cc.h>
++// pydoc.h is automatically generated in the build directory
++#include <control_stream_to_tag_cc_pydoc.h>
++
++void bind_control_stream_to_tag_cc(py::module& m)
++{
++
++    using control_stream_to_tag_cc    = gr::dab::control_stream_to_tag_cc;
++
++
++    py::class_<control_stream_to_tag_cc,
++        std::shared_ptr<control_stream_to_tag_cc>>(m, "control_stream_to_tag_cc", D(control_stream_to_tag_cc))
++
++        .def(py::init(&control_stream_to_tag_cc::make),
++           py::arg("tag_str"),
++           py::arg("vlen") = 1,
++           D(control_stream_to_tag_cc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/crc16_bb_python.cc b/python/bindings/crc16_bb_python.cc
+new file mode 100644
+index 0000000..4d1650a
+--- /dev/null
++++ b/python/bindings/crc16_bb_python.cc
+@@ -0,0 +1,62 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(crc16_bb.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(76d0a6f4d709fa44242d3a615250b76a)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/crc16_bb.h>
++// pydoc.h is automatically generated in the build directory
++#include <crc16_bb_pydoc.h>
++
++void bind_crc16_bb(py::module& m)
++{
++
++    using crc16_bb    = gr::dab::crc16_bb;
++
++
++    py::class_<crc16_bb,
++        std::shared_ptr<crc16_bb>>(m, "crc16_bb", D(crc16_bb))
++
++        .def(py::init(&crc16_bb::make),
++           py::arg("length"),
++           py::arg("generator"),
++           py::arg("initial_state"),
++           D(crc16_bb,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/diff_phasor_vcc_python.cc b/python/bindings/diff_phasor_vcc_python.cc
+new file mode 100644
+index 0000000..ce7387a
+--- /dev/null
++++ b/python/bindings/diff_phasor_vcc_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(diff_phasor_vcc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(02a4bb7afa5c52d680fedd144d8f7f59)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/diff_phasor_vcc.h>
++// pydoc.h is automatically generated in the build directory
++#include <diff_phasor_vcc_pydoc.h>
++
++void bind_diff_phasor_vcc(py::module& m)
++{
++
++    using diff_phasor_vcc    = gr::dab::diff_phasor_vcc;
++
++
++    py::class_<diff_phasor_vcc,
++        std::shared_ptr<diff_phasor_vcc>>(m, "diff_phasor_vcc", D(diff_phasor_vcc))
++
++        .def(py::init(&diff_phasor_vcc::make),
++           py::arg("length"),
++           D(diff_phasor_vcc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/docstrings/README.md b/python/bindings/docstrings/README.md
+new file mode 100644
+index 0000000..295455a
+--- /dev/null
++++ b/python/bindings/docstrings/README.md
+@@ -0,0 +1 @@
++This directory stores templates for docstrings that are scraped from the include header files for each block
+\ No newline at end of file
+diff --git a/python/bindings/docstrings/complex_to_interleaved_float_vcf_pydoc_template.h b/python/bindings/docstrings/complex_to_interleaved_float_vcf_pydoc_template.h
+new file mode 100644
+index 0000000..72843e8
+--- /dev/null
++++ b/python/bindings/docstrings/complex_to_interleaved_float_vcf_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_complex_to_interleaved_float_vcf = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_complex_to_interleaved_float_vcf_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/control_stream_to_tag_cc_pydoc_template.h b/python/bindings/docstrings/control_stream_to_tag_cc_pydoc_template.h
+new file mode 100644
+index 0000000..7f22fa0
+--- /dev/null
++++ b/python/bindings/docstrings/control_stream_to_tag_cc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_control_stream_to_tag_cc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_control_stream_to_tag_cc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/crc16_bb_pydoc_template.h b/python/bindings/docstrings/crc16_bb_pydoc_template.h
+new file mode 100644
+index 0000000..8627224
+--- /dev/null
++++ b/python/bindings/docstrings/crc16_bb_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_crc16_bb = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_crc16_bb_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/diff_phasor_vcc_pydoc_template.h b/python/bindings/docstrings/diff_phasor_vcc_pydoc_template.h
+new file mode 100644
+index 0000000..4f977d1
+--- /dev/null
++++ b/python/bindings/docstrings/diff_phasor_vcc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_diff_phasor_vcc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_diff_phasor_vcc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/estimate_sample_rate_bf_pydoc_template.h b/python/bindings/docstrings/estimate_sample_rate_bf_pydoc_template.h
+new file mode 100644
+index 0000000..8533bc1
+--- /dev/null
++++ b/python/bindings/docstrings/estimate_sample_rate_bf_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_estimate_sample_rate_bf = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_estimate_sample_rate_bf_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/fib_sink_vb_pydoc_template.h b/python/bindings/docstrings/fib_sink_vb_pydoc_template.h
+new file mode 100644
+index 0000000..3ce7ad5
+--- /dev/null
++++ b/python/bindings/docstrings/fib_sink_vb_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_fib_sink_vb = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_fib_sink_vb_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/firecode_check_bb_pydoc_template.h b/python/bindings/docstrings/firecode_check_bb_pydoc_template.h
+new file mode 100644
+index 0000000..00d404e
+--- /dev/null
++++ b/python/bindings/docstrings/firecode_check_bb_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_firecode_check_bb = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_firecode_check_bb_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/fractional_interpolator_triggered_update_cc_pydoc_template.h b/python/bindings/docstrings/fractional_interpolator_triggered_update_cc_pydoc_template.h
+new file mode 100644
+index 0000000..db24628
+--- /dev/null
++++ b/python/bindings/docstrings/fractional_interpolator_triggered_update_cc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_fractional_interpolator_triggered_update_cc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_fractional_interpolator_triggered_update_cc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/frequency_interleaver_vcc_pydoc_template.h b/python/bindings/docstrings/frequency_interleaver_vcc_pydoc_template.h
+new file mode 100644
+index 0000000..004342b
+--- /dev/null
++++ b/python/bindings/docstrings/frequency_interleaver_vcc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_frequency_interleaver_vcc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_frequency_interleaver_vcc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/insert_null_symbol_pydoc_template.h b/python/bindings/docstrings/insert_null_symbol_pydoc_template.h
+new file mode 100644
+index 0000000..35cc2a0
+--- /dev/null
++++ b/python/bindings/docstrings/insert_null_symbol_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_insert_null_symbol = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_insert_null_symbol_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/magnitude_equalizer_vcc_pydoc_template.h b/python/bindings/docstrings/magnitude_equalizer_vcc_pydoc_template.h
+new file mode 100644
+index 0000000..90d2df6
+--- /dev/null
++++ b/python/bindings/docstrings/magnitude_equalizer_vcc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_magnitude_equalizer_vcc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_magnitude_equalizer_vcc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/measure_processing_rate_pydoc_template.h b/python/bindings/docstrings/measure_processing_rate_pydoc_template.h
+new file mode 100644
+index 0000000..9b0f96d
+--- /dev/null
++++ b/python/bindings/docstrings/measure_processing_rate_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_measure_processing_rate = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_measure_processing_rate_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/modulo_ff_pydoc_template.h b/python/bindings/docstrings/modulo_ff_pydoc_template.h
+new file mode 100644
+index 0000000..ea5ddec
+--- /dev/null
++++ b/python/bindings/docstrings/modulo_ff_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_modulo_ff = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_modulo_ff_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/moving_sum_ff_pydoc_template.h b/python/bindings/docstrings/moving_sum_ff_pydoc_template.h
+new file mode 100644
+index 0000000..e137ccc
+--- /dev/null
++++ b/python/bindings/docstrings/moving_sum_ff_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_moving_sum_ff = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_moving_sum_ff_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/mp2_decode_bs_pydoc_template.h b/python/bindings/docstrings/mp2_decode_bs_pydoc_template.h
+new file mode 100644
+index 0000000..6b08689
+--- /dev/null
++++ b/python/bindings/docstrings/mp2_decode_bs_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_mp2_decode_bs = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_mp2_decode_bs_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/mp4_decode_bs_pydoc_template.h b/python/bindings/docstrings/mp4_decode_bs_pydoc_template.h
+new file mode 100644
+index 0000000..8cd6273
+--- /dev/null
++++ b/python/bindings/docstrings/mp4_decode_bs_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_mp4_decode_bs = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_mp4_decode_bs_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/ofdm_coarse_frequency_correct_pydoc_template.h b/python/bindings/docstrings/ofdm_coarse_frequency_correct_pydoc_template.h
+new file mode 100644
+index 0000000..91c7ff6
+--- /dev/null
++++ b/python/bindings/docstrings/ofdm_coarse_frequency_correct_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_ofdm_coarse_frequency_correct = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_ofdm_coarse_frequency_correct_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/ofdm_ffe_all_in_one_pydoc_template.h b/python/bindings/docstrings/ofdm_ffe_all_in_one_pydoc_template.h
+new file mode 100644
+index 0000000..2072e7b
+--- /dev/null
++++ b/python/bindings/docstrings/ofdm_ffe_all_in_one_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_ofdm_ffe_all_in_one = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_ofdm_ffe_all_in_one_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/ofdm_insert_pilot_vcc_pydoc_template.h b/python/bindings/docstrings/ofdm_insert_pilot_vcc_pydoc_template.h
+new file mode 100644
+index 0000000..acb2de6
+--- /dev/null
++++ b/python/bindings/docstrings/ofdm_insert_pilot_vcc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_ofdm_insert_pilot_vcc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_ofdm_insert_pilot_vcc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/ofdm_move_and_insert_zero_pydoc_template.h b/python/bindings/docstrings/ofdm_move_and_insert_zero_pydoc_template.h
+new file mode 100644
+index 0000000..ea96d17
+--- /dev/null
++++ b/python/bindings/docstrings/ofdm_move_and_insert_zero_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_ofdm_move_and_insert_zero = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_ofdm_move_and_insert_zero_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/ofdm_remove_first_symbol_vcc_pydoc_template.h b/python/bindings/docstrings/ofdm_remove_first_symbol_vcc_pydoc_template.h
+new file mode 100644
+index 0000000..ca85b93
+--- /dev/null
++++ b/python/bindings/docstrings/ofdm_remove_first_symbol_vcc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_ofdm_remove_first_symbol_vcc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_ofdm_remove_first_symbol_vcc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/ofdm_sampler_pydoc_template.h b/python/bindings/docstrings/ofdm_sampler_pydoc_template.h
+new file mode 100644
+index 0000000..9d32ca8
+--- /dev/null
++++ b/python/bindings/docstrings/ofdm_sampler_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_ofdm_sampler = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_ofdm_sampler_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/peak_detector_fb_pydoc_template.h b/python/bindings/docstrings/peak_detector_fb_pydoc_template.h
+new file mode 100644
+index 0000000..485fa5c
+--- /dev/null
++++ b/python/bindings/docstrings/peak_detector_fb_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_peak_detector_fb = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_peak_detector_fb_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/prune_pydoc_template.h b/python/bindings/docstrings/prune_pydoc_template.h
+new file mode 100644
+index 0000000..6ecd979
+--- /dev/null
++++ b/python/bindings/docstrings/prune_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_prune = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_prune_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/prune_vectors_pydoc_template.h b/python/bindings/docstrings/prune_vectors_pydoc_template.h
+new file mode 100644
+index 0000000..af7c74a
+--- /dev/null
++++ b/python/bindings/docstrings/prune_vectors_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_prune_vectors = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_prune_vectors_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/puncture_bb_pydoc_template.h b/python/bindings/docstrings/puncture_bb_pydoc_template.h
+new file mode 100644
+index 0000000..daa5649
+--- /dev/null
++++ b/python/bindings/docstrings/puncture_bb_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_puncture_bb = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_puncture_bb_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/qpsk_demapper_vcb_pydoc_template.h b/python/bindings/docstrings/qpsk_demapper_vcb_pydoc_template.h
+new file mode 100644
+index 0000000..9c0fcb2
+--- /dev/null
++++ b/python/bindings/docstrings/qpsk_demapper_vcb_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_qpsk_demapper_vcb = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_qpsk_demapper_vcb_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/qpsk_mapper_vbc_pydoc_template.h b/python/bindings/docstrings/qpsk_mapper_vbc_pydoc_template.h
+new file mode 100644
+index 0000000..4b35500
+--- /dev/null
++++ b/python/bindings/docstrings/qpsk_mapper_vbc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_qpsk_mapper_vbc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_qpsk_mapper_vbc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/reed_solomon_decode_bb_pydoc_template.h b/python/bindings/docstrings/reed_solomon_decode_bb_pydoc_template.h
+new file mode 100644
+index 0000000..d915b50
+--- /dev/null
++++ b/python/bindings/docstrings/reed_solomon_decode_bb_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_reed_solomon_decode_bb = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_reed_solomon_decode_bb_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/repartition_vectors_pydoc_template.h b/python/bindings/docstrings/repartition_vectors_pydoc_template.h
+new file mode 100644
+index 0000000..a99e80e
+--- /dev/null
++++ b/python/bindings/docstrings/repartition_vectors_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_repartition_vectors = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_repartition_vectors_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/select_subch_vfvf_pydoc_template.h b/python/bindings/docstrings/select_subch_vfvf_pydoc_template.h
+new file mode 100644
+index 0000000..92eef90
+--- /dev/null
++++ b/python/bindings/docstrings/select_subch_vfvf_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_select_subch_vfvf = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_select_subch_vfvf_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/select_vectors_pydoc_template.h b/python/bindings/docstrings/select_vectors_pydoc_template.h
+new file mode 100644
+index 0000000..2b376e3
+--- /dev/null
++++ b/python/bindings/docstrings/select_vectors_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_select_vectors = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_select_vectors_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/sum_phasor_trig_vcc_pydoc_template.h b/python/bindings/docstrings/sum_phasor_trig_vcc_pydoc_template.h
+new file mode 100644
+index 0000000..65260ce
+--- /dev/null
++++ b/python/bindings/docstrings/sum_phasor_trig_vcc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_sum_phasor_trig_vcc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_sum_phasor_trig_vcc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/time_deinterleave_ff_pydoc_template.h b/python/bindings/docstrings/time_deinterleave_ff_pydoc_template.h
+new file mode 100644
+index 0000000..1561e8f
+--- /dev/null
++++ b/python/bindings/docstrings/time_deinterleave_ff_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_time_deinterleave_ff = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_time_deinterleave_ff_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/unpuncture_ff_pydoc_template.h b/python/bindings/docstrings/unpuncture_ff_pydoc_template.h
+new file mode 100644
+index 0000000..63bbd8b
+--- /dev/null
++++ b/python/bindings/docstrings/unpuncture_ff_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_unpuncture_ff = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_unpuncture_ff_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/unpuncture_vff_pydoc_template.h b/python/bindings/docstrings/unpuncture_vff_pydoc_template.h
+new file mode 100644
+index 0000000..a37a35d
+--- /dev/null
++++ b/python/bindings/docstrings/unpuncture_vff_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_unpuncture_vff = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_unpuncture_vff_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/valve_ff_pydoc_template.h b/python/bindings/docstrings/valve_ff_pydoc_template.h
+new file mode 100644
+index 0000000..18e0ee4
+--- /dev/null
++++ b/python/bindings/docstrings/valve_ff_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_valve_ff = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_valve_ff_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/docstrings/xrun_monitor_cc_pydoc_template.h b/python/bindings/docstrings/xrun_monitor_cc_pydoc_template.h
+new file mode 100644
+index 0000000..9cc1721
+--- /dev/null
++++ b/python/bindings/docstrings/xrun_monitor_cc_pydoc_template.h
+@@ -0,0 +1,24 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++#include "pydoc_macros.h"
++#define D(...) DOC(gr,dab, __VA_ARGS__ )
++/*
++  This file contains placeholders for docstrings for the Python bindings.
++  Do not edit! These were automatically extracted during the binding process
++  and will be overwritten during the build process
++ */
++
++
++ 
++ static const char *__doc_gr_dab_xrun_monitor_cc = R"doc()doc";
++
++
++ static const char *__doc_gr_dab_xrun_monitor_cc_make = R"doc()doc";
++
++  
+diff --git a/python/bindings/estimate_sample_rate_bf_python.cc b/python/bindings/estimate_sample_rate_bf_python.cc
+new file mode 100644
+index 0000000..0937702
+--- /dev/null
++++ b/python/bindings/estimate_sample_rate_bf_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(estimate_sample_rate_bf.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(a4ea1a7fecc62f89f4dcc05c3f56529d)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/estimate_sample_rate_bf.h>
++// pydoc.h is automatically generated in the build directory
++#include <estimate_sample_rate_bf_pydoc.h>
++
++void bind_estimate_sample_rate_bf(py::module& m)
++{
++
++    using estimate_sample_rate_bf    = gr::dab::estimate_sample_rate_bf;
++
++
++    py::class_<estimate_sample_rate_bf,
++        std::shared_ptr<estimate_sample_rate_bf>>(m, "estimate_sample_rate_bf", D(estimate_sample_rate_bf))
++
++        .def(py::init(&estimate_sample_rate_bf::make),
++           py::arg("expected_sample_rate"),
++           py::arg("frame_length"),
++           D(estimate_sample_rate_bf,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/fib_sink_vb_python.cc b/python/bindings/fib_sink_vb_python.cc
+new file mode 100644
+index 0000000..befac33
+--- /dev/null
++++ b/python/bindings/fib_sink_vb_python.cc
+@@ -0,0 +1,59 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(fib_sink_vb.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(45f8e984ad1a80185e25885602ba1bcd)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/fib_sink_vb.h>
++// pydoc.h is automatically generated in the build directory
++#include <fib_sink_vb_pydoc.h>
++
++void bind_fib_sink_vb(py::module& m)
++{
++
++    using fib_sink_vb    = gr::dab::fib_sink_vb;
++
++
++    py::class_<fib_sink_vb,
++        std::shared_ptr<fib_sink_vb>>(m, "fib_sink_vb", D(fib_sink_vb))
++
++        .def(py::init(&fib_sink_vb::make),
++           D(fib_sink_vb,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/firecode_check_bb_python.cc b/python/bindings/firecode_check_bb_python.cc
+new file mode 100644
+index 0000000..38a2d27
+--- /dev/null
++++ b/python/bindings/firecode_check_bb_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(firecode_check_bb.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(58fbcb46f1e891ac99ef5bfb338f5498)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/firecode_check_bb.h>
++// pydoc.h is automatically generated in the build directory
++#include <firecode_check_bb_pydoc.h>
++
++void bind_firecode_check_bb(py::module& m)
++{
++
++    using firecode_check_bb    = gr::dab::firecode_check_bb;
++
++
++    py::class_<firecode_check_bb,
++        std::shared_ptr<firecode_check_bb>>(m, "firecode_check_bb", D(firecode_check_bb))
++
++        .def(py::init(&firecode_check_bb::make),
++           py::arg("bit_rate_n"),
++           D(firecode_check_bb,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/fractional_interpolator_triggered_update_cc_python.cc b/python/bindings/fractional_interpolator_triggered_update_cc_python.cc
+new file mode 100644
+index 0000000..b173f25
+--- /dev/null
++++ b/python/bindings/fractional_interpolator_triggered_update_cc_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(fractional_interpolator_triggered_update_cc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(4982237cd702877f641a58332c7e4161)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/fractional_interpolator_triggered_update_cc.h>
++// pydoc.h is automatically generated in the build directory
++#include <fractional_interpolator_triggered_update_cc_pydoc.h>
++
++void bind_fractional_interpolator_triggered_update_cc(py::module& m)
++{
++
++    using fractional_interpolator_triggered_update_cc    = gr::dab::fractional_interpolator_triggered_update_cc;
++
++
++    py::class_<fractional_interpolator_triggered_update_cc,
++        std::shared_ptr<fractional_interpolator_triggered_update_cc>>(m, "fractional_interpolator_triggered_update_cc", D(fractional_interpolator_triggered_update_cc))
++
++        .def(py::init(&fractional_interpolator_triggered_update_cc::make),
++           py::arg("phase_shift"),
++           py::arg("interp_ratio"),
++           D(fractional_interpolator_triggered_update_cc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/frequency_interleaver_vcc_python.cc b/python/bindings/frequency_interleaver_vcc_python.cc
+new file mode 100644
+index 0000000..350e1bf
+--- /dev/null
++++ b/python/bindings/frequency_interleaver_vcc_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(frequency_interleaver_vcc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(48aca42cff3d7d738f8bcac7511080d4)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/frequency_interleaver_vcc.h>
++// pydoc.h is automatically generated in the build directory
++#include <frequency_interleaver_vcc_pydoc.h>
++
++void bind_frequency_interleaver_vcc(py::module& m)
++{
++
++    using frequency_interleaver_vcc    = gr::dab::frequency_interleaver_vcc;
++
++
++    py::class_<frequency_interleaver_vcc,
++        std::shared_ptr<frequency_interleaver_vcc>>(m, "frequency_interleaver_vcc", D(frequency_interleaver_vcc))
++
++        .def(py::init(&frequency_interleaver_vcc::make),
++           py::arg("interleaving_sequence"),
++           D(frequency_interleaver_vcc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/header_utils.py b/python/bindings/header_utils.py
+new file mode 100644
+index 0000000..165124e
+--- /dev/null
++++ b/python/bindings/header_utils.py
+@@ -0,0 +1,78 @@
++# Utilities for reading values in header files
++
++from argparse import ArgumentParser
++import re
++
++
++class PybindHeaderParser:
++    def __init__(self, pathname):
++        with open(pathname,'r') as f:
++            self.file_txt = f.read()
++
++    def get_flag_automatic(self):
++        # p = re.compile(r'BINDTOOL_GEN_AUTOMATIC\(([^\s])\)')
++        # m = p.search(self.file_txt)
++        m = re.search(r'BINDTOOL_GEN_AUTOMATIC\(([^\s])\)', self.file_txt)
++        if (m and m.group(1) == '1'):
++            return True
++        else:
++            return False
++        
++    def get_flag_pygccxml(self):    
++        # p = re.compile(r'BINDTOOL_USE_PYGCCXML\(([^\s])\)')
++        # m = p.search(self.file_txt)
++        m = re.search(r'BINDTOOL_USE_PYGCCXML\(([^\s])\)', self.file_txt)
++        if (m and m.group(1) == '1'):
++            return True
++        else:
++            return False
++
++    def get_header_filename(self):
++        # p = re.compile(r'BINDTOOL_HEADER_FILE\(([^\s]*)\)')
++        # m = p.search(self.file_txt)
++        m = re.search(r'BINDTOOL_HEADER_FILE\(([^\s]*)\)', self.file_txt)
++        if (m):
++            return m.group(1)
++        else:
++            return None
++
++    def get_header_file_hash(self):
++        # p = re.compile(r'BINDTOOL_HEADER_FILE_HASH\(([^\s]*)\)')
++        # m = p.search(self.file_txt)
++        m = re.search(r'BINDTOOL_HEADER_FILE_HASH\(([^\s]*)\)', self.file_txt)
++        if (m):
++            return m.group(1)
++        else:
++            return None
++
++    def get_flags(self):
++        return f'{self.get_flag_automatic()};{self.get_flag_pygccxml()};{self.get_header_filename()};{self.get_header_file_hash()};'
++
++
++
++def argParse():
++    """Parses commandline args."""
++    desc='Reads the parameters from the comment block in the pybind files'
++    parser = ArgumentParser(description=desc)
++    
++    parser.add_argument("function", help="Operation to perform on comment block of pybind file", choices=["flag_auto","flag_pygccxml","header_filename","header_file_hash","all"])
++    parser.add_argument("pathname", help="Pathname of pybind c++ file to read, e.g. blockname_python.cc")
++
++    return parser.parse_args()
++
++if __name__ == "__main__":
++    # Parse command line options and set up doxyxml.
++    args = argParse()
++
++    pbhp = PybindHeaderParser(args.pathname)
++
++    if args.function == "flag_auto":
++        print(pbhp.get_flag_automatic())
++    elif args.function == "flag_pygccxml":
++        print(pbhp.get_flag_pygccxml())
++    elif args.function == "header_filename":
++        print(pbhp.get_header_filename())
++    elif args.function == "header_file_hash":
++        print(pbhp.get_header_file_hash()) 
++    elif args.function == "all":
++        print(pbhp.get_flags())
+\ No newline at end of file
+diff --git a/python/bindings/insert_null_symbol_python.cc b/python/bindings/insert_null_symbol_python.cc
+new file mode 100644
+index 0000000..9ec04cb
+--- /dev/null
++++ b/python/bindings/insert_null_symbol_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(insert_null_symbol.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(13fa80b684c8f92de5bb610d2550fe8a)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/insert_null_symbol.h>
++// pydoc.h is automatically generated in the build directory
++#include <insert_null_symbol_pydoc.h>
++
++void bind_insert_null_symbol(py::module& m)
++{
++
++    using insert_null_symbol    = gr::dab::insert_null_symbol;
++
++
++    py::class_<insert_null_symbol,
++        std::shared_ptr<insert_null_symbol>>(m, "insert_null_symbol", D(insert_null_symbol))
++
++        .def(py::init(&insert_null_symbol::make),
++           py::arg("ns_length"),
++           py::arg("symbol_length"),
++           D(insert_null_symbol,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/magnitude_equalizer_vcc_python.cc b/python/bindings/magnitude_equalizer_vcc_python.cc
+new file mode 100644
+index 0000000..f6499fa
+--- /dev/null
++++ b/python/bindings/magnitude_equalizer_vcc_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(magnitude_equalizer_vcc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(3d36a160812b126facf7a28f7c10f29f)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/magnitude_equalizer_vcc.h>
++// pydoc.h is automatically generated in the build directory
++#include <magnitude_equalizer_vcc_pydoc.h>
++
++void bind_magnitude_equalizer_vcc(py::module& m)
++{
++
++    using magnitude_equalizer_vcc    = gr::dab::magnitude_equalizer_vcc;
++
++
++    py::class_<magnitude_equalizer_vcc,
++        std::shared_ptr<magnitude_equalizer_vcc>>(m, "magnitude_equalizer_vcc", D(magnitude_equalizer_vcc))
++
++        .def(py::init(&magnitude_equalizer_vcc::make),
++           py::arg("vlen"),
++           py::arg("num_symbols"),
++           D(magnitude_equalizer_vcc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/measure_processing_rate_python.cc b/python/bindings/measure_processing_rate_python.cc
+new file mode 100644
+index 0000000..5f61df8
+--- /dev/null
++++ b/python/bindings/measure_processing_rate_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(measure_processing_rate.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(329f3c159d50fa139f239e3707a7cde0)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/measure_processing_rate.h>
++// pydoc.h is automatically generated in the build directory
++#include <measure_processing_rate_pydoc.h>
++
++void bind_measure_processing_rate(py::module& m)
++{
++
++    using measure_processing_rate    = gr::dab::measure_processing_rate;
++
++
++    py::class_<measure_processing_rate,
++        std::shared_ptr<measure_processing_rate>>(m, "measure_processing_rate", D(measure_processing_rate))
++
++        .def(py::init(&measure_processing_rate::make),
++           py::arg("itemsize"),
++           py::arg("samples_to_count"),
++           D(measure_processing_rate,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/modulo_ff_python.cc b/python/bindings/modulo_ff_python.cc
+new file mode 100644
+index 0000000..eac4cfb
+--- /dev/null
++++ b/python/bindings/modulo_ff_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(modulo_ff.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(b34b5e6dbff7ef3b90f015793da30ffd)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/modulo_ff.h>
++// pydoc.h is automatically generated in the build directory
++#include <modulo_ff_pydoc.h>
++
++void bind_modulo_ff(py::module& m)
++{
++
++    using modulo_ff    = gr::dab::modulo_ff;
++
++
++    py::class_<modulo_ff,
++        std::shared_ptr<modulo_ff>>(m, "modulo_ff", D(modulo_ff))
++
++        .def(py::init(&modulo_ff::make),
++           py::arg("div"),
++           D(modulo_ff,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/moving_sum_ff_python.cc b/python/bindings/moving_sum_ff_python.cc
+new file mode 100644
+index 0000000..356adb0
+--- /dev/null
++++ b/python/bindings/moving_sum_ff_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(moving_sum_ff.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(11309a7db65d5c66d3f493838dd5a8a3)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/moving_sum_ff.h>
++// pydoc.h is automatically generated in the build directory
++#include <moving_sum_ff_pydoc.h>
++
++void bind_moving_sum_ff(py::module& m)
++{
++
++    using moving_sum_ff    = gr::dab::moving_sum_ff;
++
++
++    py::class_<moving_sum_ff,
++        std::shared_ptr<moving_sum_ff>>(m, "moving_sum_ff", D(moving_sum_ff))
++
++        .def(py::init(&moving_sum_ff::make),
++           py::arg("length"),
++           D(moving_sum_ff,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/mp2_decode_bs_python.cc b/python/bindings/mp2_decode_bs_python.cc
+new file mode 100644
+index 0000000..155e599
+--- /dev/null
++++ b/python/bindings/mp2_decode_bs_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(mp2_decode_bs.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(608a538e8a51c4d052b756b2962ddf0b)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/mp2_decode_bs.h>
++// pydoc.h is automatically generated in the build directory
++#include <mp2_decode_bs_pydoc.h>
++
++void bind_mp2_decode_bs(py::module& m)
++{
++
++    using mp2_decode_bs    = gr::dab::mp2_decode_bs;
++
++
++    py::class_<mp2_decode_bs,
++        std::shared_ptr<mp2_decode_bs>>(m, "mp2_decode_bs", D(mp2_decode_bs))
++
++        .def(py::init(&mp2_decode_bs::make),
++           py::arg("bit_rate_n"),
++           D(mp2_decode_bs,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/mp4_decode_bs_python.cc b/python/bindings/mp4_decode_bs_python.cc
+new file mode 100644
+index 0000000..230eb4d
+--- /dev/null
++++ b/python/bindings/mp4_decode_bs_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(mp4_decode_bs.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(30dbd987018d0094c30831563f026f51)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/mp4_decode_bs.h>
++// pydoc.h is automatically generated in the build directory
++#include <mp4_decode_bs_pydoc.h>
++
++void bind_mp4_decode_bs(py::module& m)
++{
++
++    using mp4_decode_bs    = gr::dab::mp4_decode_bs;
++
++
++    py::class_<mp4_decode_bs,
++        std::shared_ptr<mp4_decode_bs>>(m, "mp4_decode_bs", D(mp4_decode_bs))
++
++        .def(py::init(&mp4_decode_bs::make),
++           py::arg("bit_rate_n"),
++           D(mp4_decode_bs,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/ofdm_coarse_frequency_correct_python.cc b/python/bindings/ofdm_coarse_frequency_correct_python.cc
+new file mode 100644
+index 0000000..8bff155
+--- /dev/null
++++ b/python/bindings/ofdm_coarse_frequency_correct_python.cc
+@@ -0,0 +1,62 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(ofdm_coarse_frequency_correct.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(0cba253e66f4b3e516d38385163ac48b)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/ofdm_coarse_frequency_correct.h>
++// pydoc.h is automatically generated in the build directory
++#include <ofdm_coarse_frequency_correct_pydoc.h>
++
++void bind_ofdm_coarse_frequency_correct(py::module& m)
++{
++
++    using ofdm_coarse_frequency_correct    = gr::dab::ofdm_coarse_frequency_correct;
++
++
++    py::class_<ofdm_coarse_frequency_correct,
++        std::shared_ptr<ofdm_coarse_frequency_correct>>(m, "ofdm_coarse_frequency_correct", D(ofdm_coarse_frequency_correct))
++
++        .def(py::init(&ofdm_coarse_frequency_correct::make),
++           py::arg("fft_length"),
++           py::arg("num_carriers"),
++           py::arg("cp_length"),
++           D(ofdm_coarse_frequency_correct,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/ofdm_ffe_all_in_one_python.cc b/python/bindings/ofdm_ffe_all_in_one_python.cc
+new file mode 100644
+index 0000000..3306950
+--- /dev/null
++++ b/python/bindings/ofdm_ffe_all_in_one_python.cc
+@@ -0,0 +1,64 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(ofdm_ffe_all_in_one.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(4f170a62ea562049be72784feed966bc)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/ofdm_ffe_all_in_one.h>
++// pydoc.h is automatically generated in the build directory
++#include <ofdm_ffe_all_in_one_pydoc.h>
++
++void bind_ofdm_ffe_all_in_one(py::module& m)
++{
++
++    using ofdm_ffe_all_in_one    = gr::dab::ofdm_ffe_all_in_one;
++
++
++    py::class_<ofdm_ffe_all_in_one,
++        std::shared_ptr<ofdm_ffe_all_in_one>>(m, "ofdm_ffe_all_in_one", D(ofdm_ffe_all_in_one))
++
++        .def(py::init(&ofdm_ffe_all_in_one::make),
++           py::arg("symbol_length"),
++           py::arg("fft_length"),
++           py::arg("num_symbols"),
++           py::arg("alpha"),
++           py::arg("sample_rate"),
++           D(ofdm_ffe_all_in_one,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/ofdm_insert_pilot_vcc_python.cc b/python/bindings/ofdm_insert_pilot_vcc_python.cc
+new file mode 100644
+index 0000000..119cf7c
+--- /dev/null
++++ b/python/bindings/ofdm_insert_pilot_vcc_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(ofdm_insert_pilot_vcc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(03ee6fcc47fdadc039d5ddd5d74ac38f)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/ofdm_insert_pilot_vcc.h>
++// pydoc.h is automatically generated in the build directory
++#include <ofdm_insert_pilot_vcc_pydoc.h>
++
++void bind_ofdm_insert_pilot_vcc(py::module& m)
++{
++
++    using ofdm_insert_pilot_vcc    = gr::dab::ofdm_insert_pilot_vcc;
++
++
++    py::class_<ofdm_insert_pilot_vcc,
++        std::shared_ptr<ofdm_insert_pilot_vcc>>(m, "ofdm_insert_pilot_vcc", D(ofdm_insert_pilot_vcc))
++
++        .def(py::init(&ofdm_insert_pilot_vcc::make),
++           py::arg("pilot"),
++           D(ofdm_insert_pilot_vcc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/ofdm_move_and_insert_zero_python.cc b/python/bindings/ofdm_move_and_insert_zero_python.cc
+new file mode 100644
+index 0000000..2c419d3
+--- /dev/null
++++ b/python/bindings/ofdm_move_and_insert_zero_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(ofdm_move_and_insert_zero.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(829541b226fede37bab29518d13817b5)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/ofdm_move_and_insert_zero.h>
++// pydoc.h is automatically generated in the build directory
++#include <ofdm_move_and_insert_zero_pydoc.h>
++
++void bind_ofdm_move_and_insert_zero(py::module& m)
++{
++
++    using ofdm_move_and_insert_zero    = gr::dab::ofdm_move_and_insert_zero;
++
++
++    py::class_<ofdm_move_and_insert_zero,
++        std::shared_ptr<ofdm_move_and_insert_zero>>(m, "ofdm_move_and_insert_zero", D(ofdm_move_and_insert_zero))
++
++        .def(py::init(&ofdm_move_and_insert_zero::make),
++           py::arg("fft_length"),
++           py::arg("num_carriers"),
++           D(ofdm_move_and_insert_zero,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/ofdm_remove_first_symbol_vcc_python.cc b/python/bindings/ofdm_remove_first_symbol_vcc_python.cc
+new file mode 100644
+index 0000000..19ced37
+--- /dev/null
++++ b/python/bindings/ofdm_remove_first_symbol_vcc_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(ofdm_remove_first_symbol_vcc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(bc771b5182c435b26e9e286848d762ea)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/ofdm_remove_first_symbol_vcc.h>
++// pydoc.h is automatically generated in the build directory
++#include <ofdm_remove_first_symbol_vcc_pydoc.h>
++
++void bind_ofdm_remove_first_symbol_vcc(py::module& m)
++{
++
++    using ofdm_remove_first_symbol_vcc    = gr::dab::ofdm_remove_first_symbol_vcc;
++
++
++    py::class_<ofdm_remove_first_symbol_vcc,
++        std::shared_ptr<ofdm_remove_first_symbol_vcc>>(m, "ofdm_remove_first_symbol_vcc", D(ofdm_remove_first_symbol_vcc))
++
++        .def(py::init(&ofdm_remove_first_symbol_vcc::make),
++           py::arg("vlen"),
++           D(ofdm_remove_first_symbol_vcc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/ofdm_sampler_python.cc b/python/bindings/ofdm_sampler_python.cc
+new file mode 100644
+index 0000000..076515c
+--- /dev/null
++++ b/python/bindings/ofdm_sampler_python.cc
+@@ -0,0 +1,63 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(ofdm_sampler.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(70db0819fffccc80a2edf4c08386942b)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/ofdm_sampler.h>
++// pydoc.h is automatically generated in the build directory
++#include <ofdm_sampler_pydoc.h>
++
++void bind_ofdm_sampler(py::module& m)
++{
++
++    using ofdm_sampler    = gr::dab::ofdm_sampler;
++
++
++    py::class_<ofdm_sampler,
++        std::shared_ptr<ofdm_sampler>>(m, "ofdm_sampler", D(ofdm_sampler))
++
++        .def(py::init(&ofdm_sampler::make),
++           py::arg("fft_length"),
++           py::arg("cp_length"),
++           py::arg("symbols_per_frame"),
++           py::arg("gap"),
++           D(ofdm_sampler,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/peak_detector_fb_python.cc b/python/bindings/peak_detector_fb_python.cc
+new file mode 100644
+index 0000000..0f134ab
+--- /dev/null
++++ b/python/bindings/peak_detector_fb_python.cc
+@@ -0,0 +1,63 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(peak_detector_fb.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(8eee8c84d9de7d3f5405c0df38dd6a72)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/peak_detector_fb.h>
++// pydoc.h is automatically generated in the build directory
++#include <peak_detector_fb_pydoc.h>
++
++void bind_peak_detector_fb(py::module& m)
++{
++
++    using peak_detector_fb    = gr::dab::peak_detector_fb;
++
++
++    py::class_<peak_detector_fb,
++        std::shared_ptr<peak_detector_fb>>(m, "peak_detector_fb", D(peak_detector_fb))
++
++        .def(py::init(&peak_detector_fb::make),
++           py::arg("threshold_factor_rise") =  0.25,
++           py::arg("threshold_factor_fall") =  0.40,
++           py::arg("look_ahead") =  10,
++           py::arg("alpha") =  0.001,
++           D(peak_detector_fb,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/prune_python.cc b/python/bindings/prune_python.cc
+new file mode 100644
+index 0000000..3ebfe43
+--- /dev/null
++++ b/python/bindings/prune_python.cc
+@@ -0,0 +1,63 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(prune.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(9b0527b96ea9cb83614ee5bafdae7d40)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/prune.h>
++// pydoc.h is automatically generated in the build directory
++#include <prune_pydoc.h>
++
++void bind_prune(py::module& m)
++{
++
++    using prune    = gr::dab::prune;
++
++
++    py::class_<prune,
++        std::shared_ptr<prune>>(m, "prune", D(prune))
++
++        .def(py::init(&prune::make),
++           py::arg("itemsize"),
++           py::arg("length"),
++           py::arg("prune_start"),
++           py::arg("prune_end"),
++           D(prune,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/prune_vectors_python.cc b/python/bindings/prune_vectors_python.cc
+new file mode 100644
+index 0000000..e8f8689
+--- /dev/null
++++ b/python/bindings/prune_vectors_python.cc
+@@ -0,0 +1,63 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(prune_vectors.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(be3951e1ae370f209807d729f6ef9424)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/prune_vectors.h>
++// pydoc.h is automatically generated in the build directory
++#include <prune_vectors_pydoc.h>
++
++void bind_prune_vectors(py::module& m)
++{
++
++    using prune_vectors    = gr::dab::prune_vectors;
++
++
++    py::class_<prune_vectors,
++        std::shared_ptr<prune_vectors>>(m, "prune_vectors", D(prune_vectors))
++
++        .def(py::init(&prune_vectors::make),
++           py::arg("itemsize"),
++           py::arg("length"),
++           py::arg("prune_start"),
++           py::arg("prune_end"),
++           D(prune_vectors,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/puncture_bb_python.cc b/python/bindings/puncture_bb_python.cc
+new file mode 100644
+index 0000000..5d8d970
+--- /dev/null
++++ b/python/bindings/puncture_bb_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(puncture_bb.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(b6f245b420f0375c8f0ef3ea6d09eaaf)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/puncture_bb.h>
++// pydoc.h is automatically generated in the build directory
++#include <puncture_bb_pydoc.h>
++
++void bind_puncture_bb(py::module& m)
++{
++
++    using puncture_bb    = gr::dab::puncture_bb;
++
++
++    py::class_<puncture_bb,
++        std::shared_ptr<puncture_bb>>(m, "puncture_bb", D(puncture_bb))
++
++        .def(py::init(&puncture_bb::make),
++           py::arg("puncturing_vector"),
++           D(puncture_bb,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/python_bindings.cc b/python/bindings/python_bindings.cc
+new file mode 100644
+index 0000000..437d694
+--- /dev/null
++++ b/python/bindings/python_bindings.cc
+@@ -0,0 +1,53 @@
++/*
++ * Copyright 2020 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++#include <pybind11/pybind11.h>
++
++#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
++#include <numpy/arrayobject.h>
++
++namespace py = pybind11;
++
++// Headers for binding functions
++/**************************************/
++/* The following comment block is used for
++/* gr_modtool to insert function prototypes
++/* Please do not delete
++/**************************************/
++// BINDING_FUNCTION_PROTOTYPES(
++// ) END BINDING_FUNCTION_PROTOTYPES
++
++
++// We need this hack because import_array() returns NULL
++// for newer Python versions.
++// This function is also necessary because it ensures access to the C API
++// and removes a warning.
++void* init_numpy()
++{
++    import_array();
++    return NULL;
++}
++
++PYBIND11_MODULE(dab_python, m)
++{
++    // Initialize the numpy C API
++    // (otherwise we will see segmentation faults)
++    init_numpy();
++
++    // Allow access to base block methods
++    py::module::import("gnuradio.gr");
++
++    /**************************************/
++    /* The following comment block is used for
++    /* gr_modtool to insert binding function calls
++    /* Please do not delete
++    /**************************************/
++    // BINDING_FUNCTION_CALLS(
++    // ) END BINDING_FUNCTION_CALLS
++}
+diff --git a/python/bindings/qpsk_demapper_vcb_python.cc b/python/bindings/qpsk_demapper_vcb_python.cc
+new file mode 100644
+index 0000000..7204df4
+--- /dev/null
++++ b/python/bindings/qpsk_demapper_vcb_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(qpsk_demapper_vcb.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(932b3c50eaa11b7220dbf43a583a3a82)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/qpsk_demapper_vcb.h>
++// pydoc.h is automatically generated in the build directory
++#include <qpsk_demapper_vcb_pydoc.h>
++
++void bind_qpsk_demapper_vcb(py::module& m)
++{
++
++    using qpsk_demapper_vcb    = gr::dab::qpsk_demapper_vcb;
++
++
++    py::class_<qpsk_demapper_vcb,
++        std::shared_ptr<qpsk_demapper_vcb>>(m, "qpsk_demapper_vcb", D(qpsk_demapper_vcb))
++
++        .def(py::init(&qpsk_demapper_vcb::make),
++           py::arg("symbol_length"),
++           D(qpsk_demapper_vcb,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/qpsk_mapper_vbc_python.cc b/python/bindings/qpsk_mapper_vbc_python.cc
+new file mode 100644
+index 0000000..8e84392
+--- /dev/null
++++ b/python/bindings/qpsk_mapper_vbc_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(qpsk_mapper_vbc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(2195bfef8e5eb067161e9e30849b29e2)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/qpsk_mapper_vbc.h>
++// pydoc.h is automatically generated in the build directory
++#include <qpsk_mapper_vbc_pydoc.h>
++
++void bind_qpsk_mapper_vbc(py::module& m)
++{
++
++    using qpsk_mapper_vbc    = gr::dab::qpsk_mapper_vbc;
++
++
++    py::class_<qpsk_mapper_vbc,
++        std::shared_ptr<qpsk_mapper_vbc>>(m, "qpsk_mapper_vbc", D(qpsk_mapper_vbc))
++
++        .def(py::init(&qpsk_mapper_vbc::make),
++           py::arg("symbol_length"),
++           D(qpsk_mapper_vbc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/reed_solomon_decode_bb_python.cc b/python/bindings/reed_solomon_decode_bb_python.cc
+new file mode 100644
+index 0000000..ba40011
+--- /dev/null
++++ b/python/bindings/reed_solomon_decode_bb_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(reed_solomon_decode_bb.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(3ea45a7f7c8825882b60a85b6e573bdf)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/reed_solomon_decode_bb.h>
++// pydoc.h is automatically generated in the build directory
++#include <reed_solomon_decode_bb_pydoc.h>
++
++void bind_reed_solomon_decode_bb(py::module& m)
++{
++
++    using reed_solomon_decode_bb    = gr::dab::reed_solomon_decode_bb;
++
++
++    py::class_<reed_solomon_decode_bb,
++        std::shared_ptr<reed_solomon_decode_bb>>(m, "reed_solomon_decode_bb", D(reed_solomon_decode_bb))
++
++        .def(py::init(&reed_solomon_decode_bb::make),
++           py::arg("bit_rate_n"),
++           D(reed_solomon_decode_bb,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/repartition_vectors_python.cc b/python/bindings/repartition_vectors_python.cc
+new file mode 100644
+index 0000000..96b4e10
+--- /dev/null
++++ b/python/bindings/repartition_vectors_python.cc
+@@ -0,0 +1,64 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(repartition_vectors.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(03c2517f1746417f7f7fbe4e60a47a37)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/repartition_vectors.h>
++// pydoc.h is automatically generated in the build directory
++#include <repartition_vectors_pydoc.h>
++
++void bind_repartition_vectors(py::module& m)
++{
++
++    using repartition_vectors    = gr::dab::repartition_vectors;
++
++
++    py::class_<repartition_vectors,
++        std::shared_ptr<repartition_vectors>>(m, "repartition_vectors", D(repartition_vectors))
++
++        .def(py::init(&repartition_vectors::make),
++           py::arg("itemsize"),
++           py::arg("vlen_in"),
++           py::arg("vlen_out"),
++           py::arg("multiply"),
++           py::arg("divide"),
++           D(repartition_vectors,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/select_subch_vfvf_python.cc b/python/bindings/select_subch_vfvf_python.cc
+new file mode 100644
+index 0000000..24a15e2
+--- /dev/null
++++ b/python/bindings/select_subch_vfvf_python.cc
+@@ -0,0 +1,63 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(select_subch_vfvf.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(96be40006824bc60b0e4aacd96730b72)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/select_subch_vfvf.h>
++// pydoc.h is automatically generated in the build directory
++#include <select_subch_vfvf_pydoc.h>
++
++void bind_select_subch_vfvf(py::module& m)
++{
++
++    using select_subch_vfvf    = gr::dab::select_subch_vfvf;
++
++
++    py::class_<select_subch_vfvf,
++        std::shared_ptr<select_subch_vfvf>>(m, "select_subch_vfvf", D(select_subch_vfvf))
++
++        .def(py::init(&select_subch_vfvf::make),
++           py::arg("vlen_in"),
++           py::arg("vlen_out"),
++           py::arg("address"),
++           py::arg("total_size"),
++           D(select_subch_vfvf,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/select_vectors_python.cc b/python/bindings/select_vectors_python.cc
+new file mode 100644
+index 0000000..7352d0b
+--- /dev/null
++++ b/python/bindings/select_vectors_python.cc
+@@ -0,0 +1,63 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(select_vectors.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(c8d958532cee64f2b1f97fb3878dd183)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/select_vectors.h>
++// pydoc.h is automatically generated in the build directory
++#include <select_vectors_pydoc.h>
++
++void bind_select_vectors(py::module& m)
++{
++
++    using select_vectors    = gr::dab::select_vectors;
++
++
++    py::class_<select_vectors,
++        std::shared_ptr<select_vectors>>(m, "select_vectors", D(select_vectors))
++
++        .def(py::init(&select_vectors::make),
++           py::arg("itemsize"),
++           py::arg("length"),
++           py::arg("num_select"),
++           py::arg("num_skip"),
++           D(select_vectors,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/sum_phasor_trig_vcc_python.cc b/python/bindings/sum_phasor_trig_vcc_python.cc
+new file mode 100644
+index 0000000..c86890a
+--- /dev/null
++++ b/python/bindings/sum_phasor_trig_vcc_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(sum_phasor_trig_vcc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(a2bc5803079eb47da1fbd50738a6ca0a)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/sum_phasor_trig_vcc.h>
++// pydoc.h is automatically generated in the build directory
++#include <sum_phasor_trig_vcc_pydoc.h>
++
++void bind_sum_phasor_trig_vcc(py::module& m)
++{
++
++    using sum_phasor_trig_vcc    = gr::dab::sum_phasor_trig_vcc;
++
++
++    py::class_<sum_phasor_trig_vcc,
++        std::shared_ptr<sum_phasor_trig_vcc>>(m, "sum_phasor_trig_vcc", D(sum_phasor_trig_vcc))
++
++        .def(py::init(&sum_phasor_trig_vcc::make),
++           py::arg("length"),
++           D(sum_phasor_trig_vcc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/time_deinterleave_ff_python.cc b/python/bindings/time_deinterleave_ff_python.cc
+new file mode 100644
+index 0000000..53b9309
+--- /dev/null
++++ b/python/bindings/time_deinterleave_ff_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(time_deinterleave_ff.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(36f714700566b3b235c0675c2a1683af)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/time_deinterleave_ff.h>
++// pydoc.h is automatically generated in the build directory
++#include <time_deinterleave_ff_pydoc.h>
++
++void bind_time_deinterleave_ff(py::module& m)
++{
++
++    using time_deinterleave_ff    = gr::dab::time_deinterleave_ff;
++
++
++    py::class_<time_deinterleave_ff,
++        std::shared_ptr<time_deinterleave_ff>>(m, "time_deinterleave_ff", D(time_deinterleave_ff))
++
++        .def(py::init(&time_deinterleave_ff::make),
++           py::arg("vector_length"),
++           py::arg("scrambling_vector"),
++           D(time_deinterleave_ff,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/unpuncture_ff_python.cc b/python/bindings/unpuncture_ff_python.cc
+new file mode 100644
+index 0000000..2177e14
+--- /dev/null
++++ b/python/bindings/unpuncture_ff_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(unpuncture_ff.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(5a0cd367884c0814611fc115295a6f7d)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/unpuncture_ff.h>
++// pydoc.h is automatically generated in the build directory
++#include <unpuncture_ff_pydoc.h>
++
++void bind_unpuncture_ff(py::module& m)
++{
++
++    using unpuncture_ff    = gr::dab::unpuncture_ff;
++
++
++    py::class_<unpuncture_ff,
++        std::shared_ptr<unpuncture_ff>>(m, "unpuncture_ff", D(unpuncture_ff))
++
++        .def(py::init(&unpuncture_ff::make),
++           py::arg("puncturing_vector"),
++           py::arg("fillval") = 0,
++           D(unpuncture_ff,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/unpuncture_vff_python.cc b/python/bindings/unpuncture_vff_python.cc
+new file mode 100644
+index 0000000..dbe49a3
+--- /dev/null
++++ b/python/bindings/unpuncture_vff_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(unpuncture_vff.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(f4612558acc29ae52a1af913c265e434)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/unpuncture_vff.h>
++// pydoc.h is automatically generated in the build directory
++#include <unpuncture_vff_pydoc.h>
++
++void bind_unpuncture_vff(py::module& m)
++{
++
++    using unpuncture_vff    = gr::dab::unpuncture_vff;
++
++
++    py::class_<unpuncture_vff,
++        std::shared_ptr<unpuncture_vff>>(m, "unpuncture_vff", D(unpuncture_vff))
++
++        .def(py::init(&unpuncture_vff::make),
++           py::arg("puncturing_vector"),
++           py::arg("fillval") = 0,
++           D(unpuncture_vff,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/valve_ff_python.cc b/python/bindings/valve_ff_python.cc
+new file mode 100644
+index 0000000..97ab81c
+--- /dev/null
++++ b/python/bindings/valve_ff_python.cc
+@@ -0,0 +1,61 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(valve_ff.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(aa242e44381c5ea02d10c0401e6988a1)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/valve_ff.h>
++// pydoc.h is automatically generated in the build directory
++#include <valve_ff_pydoc.h>
++
++void bind_valve_ff(py::module& m)
++{
++
++    using valve_ff    = gr::dab::valve_ff;
++
++
++    py::class_<valve_ff,
++        std::shared_ptr<valve_ff>>(m, "valve_ff", D(valve_ff))
++
++        .def(py::init(&valve_ff::make),
++           py::arg("closed"),
++           py::arg("feed_with_zeros") =  false,
++           D(valve_ff,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/python/bindings/xrun_monitor_cc_python.cc b/python/bindings/xrun_monitor_cc_python.cc
+new file mode 100644
+index 0000000..dffc818
+--- /dev/null
++++ b/python/bindings/xrun_monitor_cc_python.cc
+@@ -0,0 +1,60 @@
++/*
++ * Copyright 2021 Free Software Foundation, Inc.
++ *
++ * This file is part of GNU Radio
++ *
++ * SPDX-License-Identifier: GPL-3.0-or-later
++ *
++ */
++
++/***********************************************************************************/
++/* This file is automatically generated using bindtool and can be manually edited  */
++/* The following lines can be configured to regenerate this file during cmake      */
++/* If manual edits are made, the following tags should be modified accordingly.    */
++/* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
++/* BINDTOOL_USE_PYGCCXML(0)                                                        */
++/* BINDTOOL_HEADER_FILE(xrun_monitor_cc.h)                                        */
++/* BINDTOOL_HEADER_FILE_HASH(1e9d2f4e15a3d1cc5c86a82071cef211)                     */
++/***********************************************************************************/
++
++#include <pybind11/complex.h>
++#include <pybind11/pybind11.h>
++#include <pybind11/stl.h>
++
++namespace py = pybind11;
++
++#include <dab/xrun_monitor_cc.h>
++// pydoc.h is automatically generated in the build directory
++#include <xrun_monitor_cc_pydoc.h>
++
++void bind_xrun_monitor_cc(py::module& m)
++{
++
++    using xrun_monitor_cc    = gr::dab::xrun_monitor_cc;
++
++
++    py::class_<xrun_monitor_cc,
++        std::shared_ptr<xrun_monitor_cc>>(m, "xrun_monitor_cc", D(xrun_monitor_cc))
++
++        .def(py::init(&xrun_monitor_cc::make),
++           py::arg("length") = 500000,
++           D(xrun_monitor_cc,make)
++        )
++        
++
++
++
++        ;
++
++
++
++
++}
++
++
++
++
++
++
++
++
+diff --git a/swig/.gitignore b/swig/.gitignore
+deleted file mode 100644
+index c250d0e..0000000
+--- a/swig/.gitignore
++++ /dev/null
+@@ -1,11 +0,0 @@
+-/.deps
+-/.libs
+-/Makefile.in
+-/Makefile
+-/howto_swig.cc
+-/howto_swig.py
+-/dab_swig.cc
+-/dab_swig.py
+-/dab_swig.pyc
+-/*.la
+-/*.lo
+\ No newline at end of file
+diff --git a/swig/CMakeLists.txt b/swig/CMakeLists.txt
+deleted file mode 100644
+index 398781d..0000000
+--- a/swig/CMakeLists.txt
++++ /dev/null
+@@ -1,66 +0,0 @@
+-# Copyright 2011 Free Software Foundation, Inc.
+-#
+-# This file was generated by gr_modtool, a tool from the GNU Radio framework
+-# This file is a part of gr-dab
+-#
+-# GNU Radio is free software; you can redistribute it and/or modify
+-# it under the terms of the GNU General Public License as published by
+-# the Free Software Foundation; either version 3, or (at your option)
+-# any later version.
+-#
+-# GNU Radio is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-# GNU General Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License
+-# along with GNU Radio; see the file COPYING.  If not, write to
+-# the Free Software Foundation, Inc., 51 Franklin Street,
+-# Boston, MA 02110-1301, USA.
+-
+-########################################################################
+-# Check if there is C++ code at all
+-########################################################################
+-if(NOT dab_sources)
+-    MESSAGE(STATUS "No C++ sources... skipping swig/")
+-    return()
+-endif(NOT dab_sources)
+-
+-########################################################################
+-# Include swig generation macros
+-########################################################################
+-find_package(SWIG)
+-find_package(PythonLibs)
+-if(NOT SWIG_FOUND OR NOT PYTHONLIBS_FOUND)
+-    return()
+-endif()
+-include(GrSwig)
+-include(GrPython)
+-
+-########################################################################
+-# Setup swig generation
+-########################################################################
+-set(GR_SWIG_INCLUDE_DIRS $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>)
+-set(GR_SWIG_TARGET_DEPS gnuradio::runtime_swig)
+-
+-set(GR_SWIG_LIBRARIES gnuradio-dab)
+-
+-set(GR_SWIG_DOC_FILE ${CMAKE_CURRENT_BINARY_DIR}/grdab_swig_doc.i)
+-set(GR_SWIG_DOC_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../include)
+-
+-GR_SWIG_MAKE(grdab_swig grdab_swig.i)
+-
+-########################################################################
+-# Install the build swig module
+-########################################################################
+-GR_SWIG_INSTALL(TARGETS grdab_swig DESTINATION ${GR_PYTHON_DIR}/grdab)
+-
+-########################################################################
+-# Install swig .i files for development
+-########################################################################
+-install(
+-    FILES
+-    grdab_swig.i
+-    ${CMAKE_CURRENT_BINARY_DIR}/grdab_swig_doc.i
+-    DESTINATION ${GR_INCLUDE_DIR}/grdab/swig
+-)
+diff --git a/swig/grdab_swig.i b/swig/grdab_swig.i
+deleted file mode 100644
+index 002a2f8..0000000
+--- a/swig/grdab_swig.i
++++ /dev/null
+@@ -1,132 +0,0 @@
+-/* -*- c++ -*- */
+-
+-#define DAB_API
+-
+-%include "gnuradio.i"			// the common stuff
+-
+-//load generated python docstrings
+-%include "grdab_swig_doc.i"
+-
+-%{
+-#include "grdab/moving_sum_ff.h"
+-#include "grdab/ofdm_ffe_all_in_one.h"
+-#include "grdab/ofdm_sampler.h"
+-#include "grdab/ofdm_coarse_frequency_correct.h"
+-#include "grdab/diff_phasor_vcc.h"
+-#include "grdab/ofdm_remove_first_symbol_vcc.h"
+-#include "grdab/frequency_interleaver_vcc.h"
+-#include "grdab/qpsk_demapper_vcb.h"
+-#include "grdab/complex_to_interleaved_float_vcf.h"
+-#include "grdab/modulo_ff.h"
+-#include "grdab/measure_processing_rate.h"
+-#include "grdab/select_vectors.h"
+-#include "grdab/repartition_vectors.h"
+-#include "grdab/unpuncture_vff.h"
+-#include "grdab/prune_vectors.h"
+-#include "grdab/fib_sink_vb.h"
+-#include "grdab/estimate_sample_rate_bf.h"
+-#include "grdab/fractional_interpolator_triggered_update_cc.h"
+-#include "grdab/magnitude_equalizer_vcc.h"
+-#include "grdab/qpsk_mapper_vbc.h"
+-#include "grdab/ofdm_insert_pilot_vcc.h"
+-#include "grdab/sum_phasor_trig_vcc.h"
+-#include "grdab/ofdm_move_and_insert_zero.h"
+-#include "grdab/insert_null_symbol.h"
+-#include "grdab/time_deinterleave_ff.h"
+-#include "grdab/crc16_bb.h"
+-#include "grdab/select_subch_vfvf.h"
+-#include "grdab/unpuncture_ff.h"
+-#include "grdab/prune.h"
+-#include "grdab/firecode_check_bb.h"
+-#include "grdab/puncture_bb.h"
+-#include "grdab/mp2_decode_bs.h"
+-#include "grdab/mp4_decode_bs.h"
+-#include "grdab/reed_solomon_decode_bb.h"
+-#include "grdab/valve_ff.h"
+-#include "grdab/peak_detector_fb.h"
+-#include "grdab/control_stream_to_tag_cc.h"
+-#include "grdab/xrun_monitor_cc.h"
+-%}
+-
+-
+-%include "grdab/moving_sum_ff.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, moving_sum_ff);
+-%include "grdab/ofdm_ffe_all_in_one.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, ofdm_ffe_all_in_one);
+-%include "grdab/ofdm_sampler.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, ofdm_sampler);
+-%include "grdab/ofdm_coarse_frequency_correct.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, ofdm_coarse_frequency_correct);
+-%include "grdab/diff_phasor_vcc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, diff_phasor_vcc);
+-%include "grdab/ofdm_remove_first_symbol_vcc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, ofdm_remove_first_symbol_vcc);
+-%include "grdab/frequency_interleaver_vcc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, frequency_interleaver_vcc);
+-%include "grdab/qpsk_demapper_vcb.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, qpsk_demapper_vcb);
+-%include "grdab/complex_to_interleaved_float_vcf.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, complex_to_interleaved_float_vcf);
+-%include "grdab/modulo_ff.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, modulo_ff);
+-%include "grdab/measure_processing_rate.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, measure_processing_rate);
+-%include "grdab/select_vectors.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, select_vectors);
+-%include "grdab/repartition_vectors.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, repartition_vectors);
+-%include "grdab/unpuncture_vff.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, unpuncture_vff);
+-%include "grdab/prune_vectors.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, prune_vectors);
+-%include "grdab/fib_sink_vb.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, fib_sink_vb);
+-%include "grdab/estimate_sample_rate_bf.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, estimate_sample_rate_bf);
+-%include "grdab/fractional_interpolator_triggered_update_cc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, fractional_interpolator_triggered_update_cc);
+-%include "grdab/magnitude_equalizer_vcc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, magnitude_equalizer_vcc);
+-%include "grdab/qpsk_mapper_vbc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, qpsk_mapper_vbc);
+-%include "grdab/ofdm_insert_pilot_vcc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, ofdm_insert_pilot_vcc);
+-%include "grdab/sum_phasor_trig_vcc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, sum_phasor_trig_vcc);
+-%include "grdab/ofdm_move_and_insert_zero.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, ofdm_move_and_insert_zero);
+-%include "grdab/insert_null_symbol.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, insert_null_symbol);
+-%include "grdab/time_deinterleave_ff.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, time_deinterleave_ff);
+-%include "grdab/crc16_bb.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, crc16_bb);
+-%include "grdab/select_subch_vfvf.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, select_subch_vfvf);
+-%include "grdab/unpuncture_ff.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, unpuncture_ff);
+-%include "grdab/prune.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, prune);
+-%include "grdab/firecode_check_bb.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, firecode_check_bb);
+-%include "grdab/puncture_bb.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, puncture_bb);
+-
+-%include "grdab/mp2_decode_bs.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, mp2_decode_bs);
+-
+-%include "grdab/mp4_decode_bs.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, mp4_decode_bs);
+-%include "grdab/reed_solomon_decode_bb.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, reed_solomon_decode_bb);
+-
+-
+-%include "grdab/valve_ff.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, valve_ff);
+-%include "grdab/peak_detector_fb.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, peak_detector_fb);
+-%include "grdab/control_stream_to_tag_cc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, control_stream_to_tag_cc);
+-
+-%include "grdab/xrun_monitor_cc.h"
+-GR_SWIG_BLOCK_MAGIC2(dab, xrun_monitor_cc);

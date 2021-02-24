@@ -4,20 +4,41 @@
 #%%global git_short_commit %%(echo %%{git_commit} | cut -c -8)
 #%%global git_suffix %%{git_date}git%%{git_short_commit}
 
-%undefine __cmake_in_source_build
-
-Name:             gr-dab
-URL:              https://github.com/andrmuel/gr-dab
-Version:          0.4
-Release:          6%{?dist}
-License:          GPLv3+
-BuildRequires:    cmake3, gcc-c++, python3-devel, python3-scipy, gnuradio-devel
-BuildRequires:    python3-matplotlib, cppunit-devel, boost-devel, doxygen, fftw-devel
-BuildRequires:    swig, faad2-devel, findutils, texlive-latex, texlive-dvips, python3-mako
-BuildRequires:    texlive-newunicodechar, log4cpp-devel, gmp-devel, orc-devel
-Requires:         python3-scipy, python3-matplotlib
-Summary:          GNU Radio DAB digital audio broadcasting module
-Source0:          %{url}/archive/%{version}/%{name}-%{version}.tar.gz
+Name:          gr-dab
+URL:           https://github.com/andrmuel/gr-dab
+Version:       0.4
+Release:       7%{?dist}
+License:       GPLv3+
+BuildRequires: cmake
+BuildRequires: gcc-c++
+BuildRequires: python3-devel
+BuildRequires: python3-scipy
+BuildRequires: gnuradio-devel
+BuildRequires: python3-matplotlib
+BuildRequires: cppunit-devel
+BuildRequires: boost-devel
+BuildRequires: doxygen
+BuildRequires: ghostscript
+BuildRequires: fftw-devel
+BuildRequires: pybind11-devel
+BuildRequires: faad2-devel
+BuildRequires: findutils
+BuildRequires: texlive-latex
+BuildRequires: texlive-dvips
+BuildRequires: python3-mako
+BuildRequires: texlive-newunicodechar
+BuildRequires: log4cpp-devel
+BuildRequires: gmp-devel
+BuildRequires: orc-devel
+BuildRequires: libunwind-devel
+BuildRequires: libsndfile-devel
+Requires:      python3-scipy
+Requires:      python3-matplotlib
+Summary:       GNU Radio DAB digital audio broadcasting module
+Source0:       %{url}/archive/%{version}/%{name}-%{version}.tar.gz
+# https://github.com/andrmuel/gr-dab/issues/28
+# experimental and untested downstream patch
+Patch0:        gr-dab-0.4-gnuradio39.patch
 
 %description
 GNU Radio DAB digital audio broadcasting module.
@@ -40,27 +61,28 @@ Documentation files for gr-dab.
 %prep
 %autosetup -p1
 
+# hack to deal with wrong name
+# drop when upstream adds correct support for gnuradio-3.9
+pushd include
+ln -s grdab dab
+popd
+
 %build
-%cmake3 -DENABLE_DOXYGEN=on
-%cmake3_build -j1
+%cmake -DENABLE_DOXYGEN=on
+%cmake_build
 
 %install
-%cmake3_install
+%cmake_install
 
 # remove hashbangs
 pushd %{buildroot}%{python3_sitearch}/grdab
 find . -type f -exec sed -i '/^[ \t]*#!\/usr\/bin\/\(env\|python\)/ d' {} \;
 popd
 
-# fix locations of devel files
-mv %{buildroot}%{_libdir}/cmake/dab/* %{buildroot}%{_libdir}/cmake/grdab
-rmdir %{buildroot}%{_libdir}/cmake/dab
-mv %{buildroot}%{_includedir}/dab/* %{buildroot}%{_includedir}/grdab
-rmdir %{buildroot}%{_includedir}/dab
-
-%check
-cd %{_vpath_builddir}
-make test
+# tests not ported to gnuradio-3.9, re-enable once ported by upstream
+#%%check
+#cd %%{_vpath_builddir}
+#make test
 
 %ldconfig_scriptlets
 
@@ -71,19 +93,22 @@ make test
 %exclude %{_docdir}/%{name}/xml
 %{_datadir}/gnuradio/grc/blocks/*
 %{_libdir}/libgnuradio-dab.so.3.*
-%{python3_sitearch}/grdab
+%{python3_sitearch}/{dab,grdab}
 %{_bindir}/*
 
 %files devel
 %{_includedir}/grdab
 %{_libdir}/*.so
-%{_libdir}/cmake/grdab
+%{_libdir}/cmake/{dab,grdab}
 
 %files doc
 %doc %{_docdir}/%{name}/html
 %doc %{_docdir}/%{name}/xml
 
 %changelog
+* Wed Feb 24 2021 Jaroslav Škarvada <jskarvad@redhat.com> - 0.4-7
+- Added support for gnuradio-3.9 (experimental, untested)
+
 * Wed Feb 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
