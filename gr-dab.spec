@@ -17,7 +17,8 @@ BuildRequires: gnuradio-devel
 BuildRequires: python3-matplotlib
 BuildRequires: cppunit-devel
 BuildRequires: boost-devel
-BuildRequires: doxygen
+# Takes to long to complete
+#BuildRequires: doxygen
 BuildRequires: ghostscript
 BuildRequires: fftw-devel
 BuildRequires: pybind11-devel
@@ -70,7 +71,7 @@ ln -s grdab dab
 popd
 
 %build
-%cmake -DENABLE_DOXYGEN=on
+%cmake -DENABLE_DOXYGEN=OFF
 %cmake_build
 
 %install
@@ -104,8 +105,8 @@ popd
 %{_libdir}/cmake/{dab,grdab}
 
 %files doc
-%doc %{_docdir}/%{name}/html
-%doc %{_docdir}/%{name}/xml
+#%doc %{_docdir}/%{name}/html
+#%doc %{_docdir}/%{name}/xml
 
 %changelog
 * Mon Feb 07 2022 Leigh Scott <leigh123linux@gmail.com> - 0.4-10
