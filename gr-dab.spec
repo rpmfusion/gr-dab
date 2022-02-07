@@ -32,6 +32,7 @@ BuildRequires: gmp-devel
 BuildRequires: orc-devel
 BuildRequires: libunwind-devel
 BuildRequires: libsndfile-devel
+BuildRequires: spdlog-devel
 Requires:      python3-scipy
 Requires:      python3-matplotlib
 Summary:       GNU Radio DAB digital audio broadcasting module
