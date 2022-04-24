@@ -7,7 +7,7 @@
 Name:          gr-dab
 URL:           https://github.com/andrmuel/gr-dab
 Version:       0.4
-Release:       9%{?dist}
+Release:       10%{?dist}
 License:       GPLv3+
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -107,6 +107,9 @@ popd
 %doc %{_docdir}/%{name}/xml
 
 %changelog
+* Sun Apr 24 2022 Jaroslav Škarvada <jskarvad@redhat.com> - 0.4-10
+- Rebuilt for new gnuradio
+
 * Mon Aug 02 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 0.4-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
