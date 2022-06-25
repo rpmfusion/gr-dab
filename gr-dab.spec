@@ -7,7 +7,7 @@
 Name:          gr-dab
 URL:           https://github.com/andrmuel/gr-dab
 Version:       0.4
-Release:       10%{?dist}
+Release:       11%{?dist}
 License:       GPLv3+
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -109,6 +109,9 @@ popd
 #%doc %{_docdir}/%{name}/xml
 
 %changelog
+* Sat Jun 25 2022 Robert-André Mauchin <zebob.m@gmail.com> - 0.4-11
+- Rebuilt for Python 3.11
+
 * Mon Feb 07 2022 Leigh Scott <leigh123linux@gmail.com> - 0.4-10
 - Rebuild for libgnuradio
 
