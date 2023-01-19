@@ -7,7 +7,7 @@
 Name:          gr-dab
 URL:           https://github.com/andrmuel/gr-dab
 Version:       0.4
-Release:       12%{?dist}
+Release:       13%{?dist}
 License:       GPLv3+
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -52,14 +52,14 @@ Requires:         %{name}%{?_isa} = %{version}-%{release}
 %description devel
 Development files for gr-dab.
 
-%package doc
-Summary:          Documentation files for gr-dab
-Requires:         %{name} = %{version}-%{release}
+#%%package doc
+#Summary:          Documentation files for gr-dab
+#Requires:         %{name} = %{version}-%{release}
 # doxygen bug workaround
 #BuildArch:        noarch
 
-%description doc
-Documentation files for gr-dab.
+#%%description doc
+#Documentation files for gr-dab.
 
 %prep
 %autosetup -p1
@@ -104,11 +104,15 @@ popd
 %{_libdir}/*.so
 %{_libdir}/cmake/{dab,grdab}
 
-%files doc
+#%%files doc
 #%doc %{_docdir}/%{name}/html
 #%doc %{_docdir}/%{name}/xml
 
 %changelog
+* Thu Jan 19 2023 Jaroslav Škarvada <jskarvad@redhat.com> - 0.4-13
+- Dropped empty doc subpackage
+- Rebuilt for new volk
+
 * Sun Aug 07 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.4-12
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
