@@ -7,7 +7,7 @@
 Name:          gr-dab
 URL:           https://github.com/andrmuel/gr-dab
 Version:       0.4
-Release:       14%{?dist}
+Release:       15%{?dist}
 License:       GPLv3+
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -109,6 +109,9 @@ popd
 #%doc %{_docdir}/%{name}/xml
 
 %changelog
+* Sat Jul 08 2023 Leigh Scott <leigh123linux@gmail.com> - 0.4-15
+- Rebuilt for Python 3.12
+
 * Wed Feb 08 2023 Leigh Scott <leigh123linux@gmail.com> - 0.4-14
 - rebuilt
 
