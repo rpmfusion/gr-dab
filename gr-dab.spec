@@ -7,7 +7,7 @@
 Name:          gr-dab
 URL:           https://github.com/andrmuel/gr-dab
 Version:       0.4
-Release:       17%{?dist}
+Release:       18%{?dist}
 License:       GPLv3+
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -109,6 +109,9 @@ popd
 #%doc %{_docdir}/%{name}/xml
 
 %changelog
+* Mon Dec 11 2023 Jaroslav Škarvada <jskarvad@redhat.com> - 0.4-18
+- Rebuilt for new volk
+
 * Wed Nov 08 2023 Leigh Scott <leigh123linux@gmail.com> - 0.4-17
 - Rebuild for new faad2 version
 
