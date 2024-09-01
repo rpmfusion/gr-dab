@@ -6,8 +6,8 @@
 
 Name:          gr-dab
 URL:           https://github.com/andrmuel/gr-dab
-Version:       0.4
-Release:       20%{?dist}
+Version:       0.5
+Release:       1%{?dist}
 License:       GPLv3+
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -38,9 +38,6 @@ Requires:      python3-scipy
 Requires:      python3-matplotlib
 Summary:       GNU Radio DAB digital audio broadcasting module
 Source0:       %{url}/archive/%{version}/%{name}-%{version}.tar.gz
-# https://github.com/andrmuel/gr-dab/issues/28
-# experimental and untested downstream patch
-Patch0:        gr-dab-0.4-gnuradio39.patch
 
 %description
 GNU Radio DAB digital audio broadcasting module.
@@ -54,7 +51,7 @@ Development files for gr-dab.
 
 #%%package doc
 #Summary:          Documentation files for gr-dab
-#Requires:         %{name} = %{version}-%{release}
+#Requires:         %%{name} = %%{version}-%%{release}
 # doxygen bug workaround
 #BuildArch:        noarch
 
@@ -64,12 +61,6 @@ Development files for gr-dab.
 %prep
 %autosetup -p1
 
-# hack to deal with wrong name
-# drop when upstream adds correct support for gnuradio-3.9
-pushd include
-ln -s grdab dab
-popd
-
 %build
 %cmake -DENABLE_DOXYGEN=OFF
 %cmake_build
@@ -78,37 +69,37 @@ popd
 %cmake_install
 
 # remove hashbangs
-pushd %{buildroot}%{python3_sitearch}/grdab
+pushd %{buildroot}%{python3_sitearch}/gnuradio
 find . -type f -exec sed -i '/^[ \t]*#!\/usr\/bin\/\(env\|python\)/ d' {} \;
 popd
 
-# tests not ported to gnuradio-3.9, re-enable once ported by upstream
-#%%check
-#cd %%{_vpath_builddir}
-#make test
+%check
+cd %{_vpath_builddir}
+make test
 
 %ldconfig_scriptlets
 
 %files
 %license COPYING
 %doc AUTHORS README.md THANKS
-%exclude %{_docdir}/%{name}/html
-%exclude %{_docdir}/%{name}/xml
 %{_datadir}/gnuradio/grc/blocks/*
 %{_libdir}/libgnuradio-dab.so.3.*
-%{python3_sitearch}/{dab,grdab}
+%{python3_sitearch}/gnuradio/
 %{_bindir}/*
 
 %files devel
-%{_includedir}/grdab
+%{_includedir}/dab
 %{_libdir}/*.so
-%{_libdir}/cmake/{dab,grdab}
+%{_libdir}/cmake/gnuradio-dab/
 
 #%%files doc
-#%doc %{_docdir}/%{name}/html
-#%doc %{_docdir}/%{name}/xml
+#%%doc %%{_docdir}/%%{name}/html
+#%%doc %%{_docdir}/%%{name}/xml
 
 %changelog
+* Sun Sep 01 2024 Leigh Scott <leigh123linux@gmail.com> - 0.5-1
+- Update to 0.5
+
 * Thu Jun 13 2024 Leigh Scott <leigh123linux@gmail.com> - 0.4-20
 - Rebuilt for Python 3.13
 
