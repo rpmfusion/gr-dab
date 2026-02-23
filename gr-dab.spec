@@ -7,7 +7,7 @@
 Name:          gr-dab
 URL:           https://github.com/andrmuel/gr-dab
 Version:       0.5
-Release:       4%{?dist}
+Release:       5%{?dist}
 License:       GPLv3+
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -97,6 +97,9 @@ make test
 #%%doc %%{_docdir}/%%{name}/xml
 
 %changelog
+* Mon Feb 23 2026 Nicolas Chauvet <kwizart@gmail.com> - 0.5-5
+- rebuilt
+
 * Mon Feb 02 2026 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 0.5-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_44_Mass_Rebuild
 
