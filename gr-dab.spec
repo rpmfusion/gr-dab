@@ -62,7 +62,10 @@ Development files for gr-dab.
 %autosetup -p1
 
 %build
-%cmake -DENABLE_DOXYGEN=OFF
+%cmake \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+  -DENABLE_DOXYGEN=OFF
+
 %cmake_build
 
 %install
@@ -74,10 +77,8 @@ find . -type f -exec sed -i '/^[ \t]*#!\/usr\/bin\/\(env\|python\)/ d' {} \;
 popd
 
 %check
-cd %{_vpath_builddir}
-make test
+%ctest
 
-%ldconfig_scriptlets
 
 %files
 %license COPYING
